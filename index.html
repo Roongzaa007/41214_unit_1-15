@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mind Map 41214 หน่วย 1-15</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&family=Noto+Serif+Thai:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#07090f; --surface:#0f1623; --card:#151e2e; --card2:#1a2540;
+  --gold:#f0c040; --gold2:#fde68a;
+  --red:#ef4444; --blue:#3b82f6; --green:#22c55e;
+  --purple:#a855f7; --orange:#f97316; --teal:#14b8a6;
+  --yellow:#eab308; --pink:#ec4899; --cyan:#06b6d4; --indigo:#6366f1;
+  --border:#1e2d42; --text:#e2e8f0; --dim:#64748b; --dim2:#94a3b8;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Sarabun',sans-serif;min-height:100vh}
+.header{text-align:center;padding:2.5rem 1rem 1.5rem;background:linear-gradient(180deg,rgba(59,130,246,.08) 0%,transparent 100%)}
+.badge{display:inline-block;padding:.3rem 1rem;border:1px solid var(--gold);color:var(--gold);border-radius:999px;font-size:.8rem;margin-bottom:.8rem;letter-spacing:.05em}
+.header h1{font-family:'Noto Serif Thai',serif;font-size:clamp(1.4rem,4vw,2.2rem);color:var(--gold);margin-bottom:.4rem}
+.header .sub{color:var(--dim2);font-size:.9rem}
+
+/* Tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:.5rem;padding:1rem 1.5rem;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;background:rgba(7,9,15,.95);backdrop-filter:blur(8px)}
+.tab{padding:.45rem 1rem;border-radius:8px;cursor:pointer;font-size:.85rem;font-weight:600;border:1px solid var(--border);color:var(--dim2);transition:.2s}
+.tab:hover{border-color:var(--dim2);color:var(--text)}
+.tab.active{background:var(--gold);color:#000;border-color:var(--gold)}
+
+/* Unit pills */
+.unit-pills{display:flex;flex-wrap:wrap;gap:.4rem;padding:.8rem 1.5rem;background:var(--surface)}
+.up{padding:.3rem .75rem;border-radius:6px;cursor:pointer;font-size:.78rem;font-weight:700;border:1px solid;transition:.2s}
+.up:hover{opacity:.8}
+
+/* Section blocks */
+.section-block{display:none;padding:1.5rem}
+.section-block.active{display:block}
+
+/* Unit block */
+.unit-block{margin-bottom:2rem}
+.unit-head{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem;padding:.8rem 1rem;background:var(--card);border-radius:10px;border-left:3px solid var(--gold)}
+.unit-num{font-family:'Noto Serif Thai',serif;font-size:1.1rem;font-weight:700;color:var(--gold)}
+.unit-title{font-size:1rem;font-weight:700}
+.unit-sub{font-size:.8rem;color:var(--dim2)}
+
+/* Content cards */
+.cc{background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:.6rem;overflow:hidden}
+.cc-head{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;cursor:pointer;transition:.15s}
+.cc-head:hover{background:rgba(255,255,255,.03)}
+.cc-num{padding:.25rem .6rem;border-radius:6px;font-size:.8rem;font-weight:700;cursor:pointer;flex-shrink:0;transition:.15s}
+.cc-num:hover{opacity:.8;transform:scale(1.05)}
+.cc-title{font-weight:600;font-size:.9rem;flex:1}
+.cc-sub{font-size:.75rem;color:var(--dim2);margin-top:.1rem}
+.cc-chev{color:var(--dim);font-size:.9rem;transition:.3s;flex-shrink:0}
+.cc-body{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.cc-body.open{max-height:2000px}
+.cc-inner{padding:1rem;border-top:1px solid var(--border)}
+
+/* Law text */
+.ltext{background:rgba(240,192,64,.06);border:1px solid rgba(240,192,64,.2);border-radius:8px;padding:.75rem;margin-bottom:.75rem;font-size:.82rem;line-height:1.7}
+.ll{display:block;color:var(--gold);font-weight:700;margin-bottom:.3rem;font-size:.78rem}
+
+/* Analysis box */
+.abox{background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.2);border-radius:8px;padding:.75rem;margin-bottom:.75rem;font-size:.82rem;line-height:1.6}
+.abox h4{color:var(--blue);font-size:.8rem;margin-bottom:.4rem}
+
+/* Result box */
+.rbox{background:rgba(20,184,166,.06);border:1px solid rgba(20,184,166,.2);border-radius:8px;padding:.75rem;font-size:.82rem;line-height:1.6}
+.rbox h4{color:var(--teal);font-size:.8rem;margin-bottom:.4rem}
+
+/* Tags */
+.tag{display:inline-block;padding:.15rem .5rem;border-radius:5px;font-size:.72rem;font-weight:700;margin:.1rem}
+.t-void{background:rgba(239,68,68,.2);color:var(--red)}
+.t-voidable{background:rgba(249,115,22,.2);color:var(--orange)}
+.t-valid{background:rgba(34,197,94,.2);color:var(--green)}
+.t-info{background:rgba(59,130,246,.2);color:var(--blue)}
+.t-gold{background:rgba(240,192,64,.2);color:var(--gold)}
+
+/* Overview grid */
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;padding:1.5rem}
+.ov-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem;cursor:pointer;transition:.2s}
+.ov-card:hover{transform:translateY(-2px);border-color:var(--dim)}
+.ov-icon{font-size:1.6rem;margin-bottom:.3rem}
+.ov-name{font-weight:700;font-size:.95rem;margin-bottom:.15rem}
+.ov-desc{font-size:.75rem;color:var(--dim2);margin-bottom:.6rem}
+.ov-pills{display:flex;flex-wrap:wrap;gap:.25rem}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:100;display:none;align-items:center;justify-content:center;padding:1rem}
+.modal-overlay.open{display:flex}
+.modal-box{background:#131c2c;border:1px solid var(--border);border-radius:14px;width:100%;max-width:600px;max-height:85vh;overflow-y:auto}
+.modal-header{display:flex;justify-content:space-between;align-items:flex-start;padding:1.2rem;border-bottom:1px solid var(--border)}
+.modal-badge{display:inline-block;padding:.25rem .75rem;border-radius:6px;font-size:.78rem;font-weight:700;margin-bottom:.4rem}
+.modal-title{font-family:'Noto Serif Thai',serif;font-size:1.1rem;font-weight:700;color:var(--gold)}
+.modal-sub{font-size:.78rem;color:var(--dim2);margin-top:.2rem}
+.modal-close{background:none;border:1px solid var(--border);color:var(--dim2);width:30px;height:30px;border-radius:6px;cursor:pointer;font-size:1rem;flex-shrink:0}
+.modal-body{padding:1rem}
+.modal-sec{margin-bottom:1rem;border-radius:8px;overflow:hidden}
+.modal-sec-title{font-size:.8rem;font-weight:700;padding:.5rem .75rem;background:rgba(255,255,255,.04)}
+.law-box .modal-sec-title{color:var(--gold)}
+.elem-box .modal-sec-title{color:var(--blue)}
+.result-box .modal-sec-title{color:var(--orange)}
+.law-text{padding:.75rem;font-size:.82rem;line-height:1.75;white-space:pre-wrap;background:rgba(240,192,64,.04);border:1px solid rgba(240,192,64,.1)}
+.elem-box{background:rgba(59,130,246,.04);border:1px solid rgba(59,130,246,.1)}
+.elem-box ol{padding:.75rem .75rem .75rem 1.5rem;font-size:.83rem;line-height:1.7}
+.elem-box ul.sub-list{margin-top:.3rem;padding-left:1rem;color:var(--dim2)}
+.formula-note{padding:.5rem .75rem;background:rgba(234,179,8,.08);border-top:1px solid rgba(234,179,8,.15);font-size:.78rem;color:var(--yellow)}
+.result-box{background:rgba(249,115,22,.04);border:1px solid rgba(249,115,22,.1)}
+.result-box .pills-row{padding:.5rem .75rem;display:flex;flex-wrap:wrap;gap:.3rem}
+.result-box .result-note{padding:.5rem .75rem;font-size:.82rem;line-height:1.6;border-top:1px solid rgba(249,115,22,.1)}
+.r-pill{padding:.2rem .6rem;border-radius:5px;font-size:.75rem;font-weight:700}
+.r-void{background:rgba(239,68,68,.2);color:var(--red)}
+.r-voidable{background:rgba(249,115,22,.2);color:var(--orange)}
+.r-valid{background:rgba(34,197,94,.2);color:var(--green)}
+.r-info{background:rgba(59,130,246,.2);color:var(--blue)}
+
+/* Color utils */
+.c-gold{color:var(--gold);background:rgba(240,192,64,.12);border-radius:5px}
+.c-blue{color:var(--blue);background:rgba(59,130,246,.12);border-radius:5px}
+.c-green{color:var(--green);background:rgba(34,197,94,.12);border-radius:5px}
+.c-red{color:var(--red);background:rgba(239,68,68,.12);border-radius:5px}
+.c-orange{color:var(--orange);background:rgba(249,115,22,.12);border-radius:5px}
+.c-teal{color:var(--teal);background:rgba(20,184,166,.12);border-radius:5px}
+.c-purple{color:var(--purple);background:rgba(168,85,247,.12);border-radius:5px}
+.c-pink{color:var(--pink);background:rgba(236,72,153,.12);border-radius:5px}
+.c-cyan{color:var(--cyan);background:rgba(6,182,212,.12);border-radius:5px}
+.c-indigo{color:var(--indigo);background:rgba(99,102,241,.12);border-radius:5px}
+.click-icon{font-size:.65rem}
+.mat-num{padding:.2rem .5rem;border-radius:5px;font-size:.8rem;font-weight:700;cursor:pointer;transition:.15s}
+.mat-num:hover{opacity:.8;transform:scale(1.05)}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="badge">41214 · กฎหมายแพ่งว่าด้วยบุคคล นิติกรรม และหนี้ · มสธ.</div>
+  <h1>⚖️ Mind Map ฉบับเตรียมสอบ หน่วย 1–15</h1>
+  <p class="sub">ครอบคลุมทุกมาตราสำคัญ · คลิกเลขมาตราเพื่อดูตัวบทกฎหมาย</p>
+</div>
+
+<div class="tabs" id="tabs">
+  <div class="tab active" onclick="showSection('all')">🗺️ ภาพรวม</div>
+  <div class="tab" onclick="showSection('bukkhon')" style="border-color:rgba(59,130,246,.5);color:var(--blue)">👤 หมวดบุคคล</div>
+  <div class="tab" onclick="showSection('nitikat')" style="border-color:rgba(240,192,64,.5);color:var(--gold)">📜 หมวดนิติกรรม</div>
+  <div class="tab" onclick="showSection('ni')" style="border-color:rgba(20,184,166,.5);color:var(--teal)">💰 หมวดหนี้</div>
+</div>
+
+<!-- SECTION: OVERVIEW -->
+<div class="section-block active" id="sec-all">
+  <div class="ov-grid">
+    <div class="ov-card" onclick="showSection('bukkhon')" style="border-color:rgba(59,130,246,.3)">
+      <div class="ov-icon">👤</div>
+      <div class="ov-name" style="color:var(--blue)">หมวดบุคคล (หน่วย 1-2)</div>
+      <div class="ov-desc">บุคคลธรรมดา · นิติบุคคล · ความสามารถ · ภูมิลำเนา</div>
+      <div class="ov-pills">
+        <span class="tag t-info">หน่วย 1: บุคคลธรรมดา</span>
+        <span class="tag t-info">หน่วย 2: นิติบุคคล</span>
+      </div>
+    </div>
+    <div class="ov-card" onclick="showSection('nitikat')" style="border-color:rgba(240,192,64,.3)">
+      <div class="ov-icon">📜</div>
+      <div class="ov-name" style="color:var(--gold)">หมวดนิติกรรมและสัญญา (หน่วย 3-7)</div>
+      <div class="ov-desc">นิติกรรม · โมฆะ/โมฆียะ · เงื่อนไข · สัญญา · มัดจำ · เบี้ยปรับ</div>
+      <div class="ov-pills">
+        <span class="tag t-gold">หน่วย 3</span><span class="tag t-gold">หน่วย 4</span>
+        <span class="tag t-gold">หน่วย 5</span><span class="tag t-gold">หน่วย 6</span>
+        <span class="tag t-gold">หน่วย 7</span>
+      </div>
+    </div>
+    <div class="ov-card" onclick="showSection('ni')" style="border-color:rgba(20,184,166,.3)">
+      <div class="ov-icon">💰</div>
+      <div class="ov-name" style="color:var(--teal)">หมวดหนี้ (หน่วย 8-15)</div>
+      <div class="ov-desc">หลักหนี้ · ผิดนัด · ฉ้อฉล · บุริมสิทธิ · ลูกหนี้หลายคน · การระงับหนี้</div>
+      <div class="ov-pills">
+        <span class="tag t-valid">หน่วย 8-15</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Reference Table -->
+  <div style="padding:0 1.5rem 2rem">
+    <h3 style="color:var(--gold);margin-bottom:.75rem;font-size:.95rem">📌 ตารางสรุปมาตราสำคัญทั้งหมด</h3>
+    <div style="overflow-x:auto">
+    <table style="width:100%;border-collapse:collapse;font-size:.82rem">
+      <thead>
+        <tr style="background:var(--card)">
+          <th style="padding:.5rem .75rem;text-align:left;color:var(--gold);border-bottom:1px solid var(--border)">หน่วย</th>
+          <th style="padding:.5rem .75rem;text-align:left;color:var(--gold);border-bottom:1px solid var(--border)">เรื่อง</th>
+          <th style="padding:.5rem .75rem;text-align:left;color:var(--gold);border-bottom:1px solid var(--border)">มาตราหลัก</th>
+          <th style="padding:.5rem .75rem;text-align:left;color:var(--gold);border-bottom:1px solid var(--border)">ผลทางกฎหมาย</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:rgba(59,130,246,.04)"><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">1</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">บุคคลธรรมดา</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="mat-num c-blue" onclick="openModal('m15')">ม.15</span> <span class="mat-num c-blue" onclick="openModal('m61')">ม.61</span> <span class="mat-num c-blue" onclick="openModal('m37')">ม.37</span></td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="tag t-info">คลอด+อยู่รอด</span> <span class="tag t-info">สาบสูญ 2/5 ปี</span></td></tr>
+        <tr><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">2</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">นิติบุคคล</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="mat-num c-blue" onclick="openModal('m65')">ม.65</span> <span class="mat-num c-blue" onclick="openModal('m66')">ม.66</span></td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="tag t-info">ต้องมีกฎหมายรับรอง</span></td></tr>
+        <tr style="background:rgba(240,192,64,.04)"><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">3</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">นิติกรรม/เจตนา</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="mat-num c-gold" onclick="openModal('m149')">ม.149</span> <span class="mat-num c-red" onclick="openModal('m150')">ม.150</span> <span class="mat-num c-red" onclick="openModal('m154')">ม.154</span> <span class="mat-num c-orange" onclick="openModal('m157')">ม.157</span></td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="tag t-void">โมฆะ</span> <span class="tag t-voidable">โมฆียะ</span></td></tr>
+        <tr style="background:rgba(240,192,64,.04)"><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">4</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">โมฆะ/โมฆียะ</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="mat-num c-red" onclick="openModal('m172')">ม.172</span> <span class="mat-num c-orange" onclick="openModal('m175')">ม.175</span> <span class="mat-num c-orange" onclick="openModal('m177')">ม.177</span></td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="tag t-void">เสียเปล่า</span> <span class="tag t-voidable">บอกล้างได้</span></td></tr>
+        <tr style="background:rgba(240,192,64,.04)"><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">5</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">เงื่อนไข/อายุความ</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="mat-num c-gold" onclick="openModal('m183')">ม.183</span> <span class="mat-num c-gold" onclick="openModal('m193_14')">ม.193/14</span> <span class="mat-num c-gold" onclick="openModal('m193_30')">ม.193/30</span></td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="tag t-gold">10 ปี ทั่วไป</span></td></tr>
+        <tr style="background:rgba(240,192,64,.04)"><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">6</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">การก่อสัญญา</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="mat-num c-gold" onclick="openModal('m354')">ม.354</span> <span class="mat-num c-gold" onclick="openModal('m361')">ม.361</span></td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="tag t-gold">เสนอ+สนอง=สัญญา</span></td></tr>
+        <tr style="background:rgba(240,192,64,.04)"><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">7</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">ผลสัญญา/มัดจำ/เบี้ยปรับ</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="mat-num c-gold" onclick="openModal('m377')">ม.377</span> <span class="mat-num c-gold" onclick="openModal('m379')">ม.379</span> <span class="mat-num c-gold" onclick="openModal('m386')">ม.386</span></td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="tag t-gold">ริบมัดจำ/ศาลลดเบี้ยปรับ</span></td></tr>
+        <tr style="background:rgba(20,184,166,.04)"><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">8</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">หลักทั่วไปของหนี้</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="mat-num c-teal" onclick="openModal('m194')">ม.194</span> <span class="mat-num c-teal" onclick="openModal('m195')">ม.195</span></td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="tag t-valid">บุคคลสิทธิ vs ทรัพยสิทธิ</span></td></tr>
+        <tr style="background:rgba(20,184,166,.04)"><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">9</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">ผิดนัด/ไม่ชำระหนี้</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="mat-num c-teal" onclick="openModal('m204')">ม.204</span> <span class="mat-num c-teal" onclick="openModal('m207')">ม.207</span> <span class="mat-num c-teal" onclick="openModal('m218')">ม.218</span></td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="tag t-valid">เตือน/ปฏิทิน/ค่าเสียหาย</span></td></tr>
+        <tr style="background:rgba(20,184,166,.04)"><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">10</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">สวมสิทธิ/ฉ้อฉล</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="mat-num c-teal" onclick="openModal('m233')">ม.233</span> <span class="mat-num c-teal" onclick="openModal('m237')">ม.237</span></td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="tag t-valid">เพิกถอน 1/10 ปี</span></td></tr>
+        <tr style="background:rgba(20,184,166,.04)"><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">11</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">ยึดหน่วง/บุริมสิทธิ</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="mat-num c-teal" onclick="openModal('m241')">ม.241</span> <span class="mat-num c-teal" onclick="openModal('m251')">ม.251</span></td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="tag t-valid">ยึดไว้ได้/ได้รับก่อน</span></td></tr>
+        <tr style="background:rgba(20,184,166,.04)"><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">12</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">ลูกหนี้/เจ้าหนี้หลายคน</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="mat-num c-teal" onclick="openModal('m291')">ม.291</span> <span class="mat-num c-teal" onclick="openModal('m299')">ม.299</span></td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="tag t-valid">ลูกหนี้ร่วม/เจ้าหนี้ร่วม</span></td></tr>
+        <tr style="background:rgba(20,184,166,.04)"><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">13</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">รับช่วงสิทธิ/โอนสิทธิ</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="mat-num c-teal" onclick="openModal('m226')">ม.226</span> <span class="mat-num c-teal" onclick="openModal('m306')">ม.306</span></td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="tag t-valid">กฎหมาย vs สัญญา</span></td></tr>
+        <tr style="background:rgba(20,184,166,.04)"><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">14</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">ความระงับหนี้</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="mat-num c-teal" onclick="openModal('m340')">ม.340</span> <span class="mat-num c-teal" onclick="openModal('m341')">ม.341</span> <span class="mat-num c-teal" onclick="openModal('m349')">ม.349</span></td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="tag t-valid">5 วิธีระงับหนี้</span></td></tr>
+        <tr style="background:rgba(20,184,166,.04)"><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">15</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)">หักกลบ/แปลงหนี้/เกลื่อน</td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="mat-num c-teal" onclick="openModal('m341')">ม.341</span> <span class="mat-num c-teal" onclick="openModal('m349')">ม.349</span> <span class="mat-num c-teal" onclick="openModal('m353')">ม.353</span></td><td style="padding:.45rem .75rem;border-bottom:1px solid var(--border)"><span class="tag t-valid">หนี้ชนหนี้/เปลี่ยนหนี้/รวมร่าง</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+<!-- SECTION: บุคคล -->
+<div class="section-block" id="sec-bukkhon">
+  <div style="padding:1rem 1.5rem .5rem"><div class="unit-pills" id="pills-b">
+    <div class="up" style="color:var(--blue);border-color:var(--blue)" onclick="scrollTo('u1')">หน่วยที่ 1</div>
+    <div class="up" style="color:var(--cyan);border-color:var(--cyan)" onclick="scrollTo('u2')">หน่วยที่ 2</div>
+  </div></div>
+
+  <!-- หน่วย 1 -->
+  <div class="unit-block" style="padding:0 1.5rem" id="u1">
+    <div class="unit-head"><div><div class="unit-num">หน่วยที่ 1</div><div class="unit-title">หลักทั่วไปของบุคคลธรรมดา</div><div class="unit-sub">สภาพบุคคล · ความสามารถ · ภูมิลำเนา · การสาบสูญ</div></div></div>
+
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-blue" onclick="event.stopPropagation();openModal('m15')">ม.15 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">การเริ่มและสิ้นสุดสภาพบุคคล</div><div class="cc-sub">คลอด + อยู่รอดเป็นทารก → มีสภาพบุคคล</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="ltext"><span class="ll">📜 มาตรา 15</span>สภาพบุคคลย่อมเริ่มแต่เมื่อคลอดแล้วอยู่รอดเป็นทารก และสิ้นสุดลงเมื่อตาย</div>
+        <div class="abox"><h4>🔍 องค์ประกอบ</h4>① <strong>คลอด</strong> = พ้นจากครรภ์หมดทั้งตัว (ไม่สนสายสะดือ)<br>② <strong>อยู่รอดเป็นทารก</strong> = มีสัญญาณชีพ (หายใจ/หัวใจเต้น) แม้ชั่วครู่<br>③ ทารกในครรภ์ → มีสิทธิบางอย่างได้ ถ้าต่อมาคลอดแล้วอยู่รอด</div>
+        <div class="rbox"><h4>⚠️ จุดหลอกข้อสอบ</h4>"ตัดสายสะดือ" ไม่ใช่เงื่อนไข · วัดที่ "พ้นครรภ์หมดทั้งตัว"</div>
+      </div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-blue" onclick="event.stopPropagation();openModal('m61')">ม.61-62 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">การสาบสูญ</div><div class="cc-sub"><span class="tag t-info">ธรรมดา 5 ปี</span> <span class="tag t-gold">พิเศษ 2 ปี</span></div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="ltext"><span class="ll">📜 มาตรา 61-62 (สรุป)</span>หายไป → ศาลสั่งให้เป็นคนสาบสูญ → กฎหมายถือว่า "ตาย" เมื่อครบกำหนดเวลาตามม.61</div>
+        <div class="abox"><h4>🔍 ระยะเวลา</h4>
+        <strong style="color:var(--blue)">กรณีธรรมดา:</strong> หายไป 5 ปี → สาบสูญ<br>
+        <strong style="color:var(--gold)">กรณีพิเศษ:</strong> (สงคราม/ยานพาหนะล่ม/อันตรายแก่ชีวิต) หายไป 2 ปี → สาบสูญ<br><br>
+        <strong>💡 สูตรจำ:</strong> "ธรรมดา 5 / พิเศษ 2 / ตายเมื่อครบกำหนด ไม่ใช่วันศาลสั่ง"</div>
+        <div class="rbox"><h4>⚠️ จุดหลอก</h4>"วันตาย" = วันครบกำหนดตาม ม.61 ไม่ใช่วันที่ศาลมีคำสั่ง</div>
+      </div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-blue" onclick="event.stopPropagation();openModal('m37')">ม.37-47 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">ภูมิลำเนา</div><div class="cc-sub">ถิ่นที่อยู่เป็นแหล่งสำคัญ · ประเภทพิเศษ</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 ประเภทภูมิลำเนา</h4>
+        • ทั่วไป: ถิ่นที่อยู่เป็นแหล่งสำคัญ (ม.37)<br>
+        • ผู้เยาว์: ตามผู้แทนโดยชอบธรรม<br>
+        • คนไร้ความสามารถ: ตามผู้อนุบาล<br>
+        • ข้าราชการ: ถิ่นที่ทำการตามตำแหน่ง<br>
+        • ผู้ถูกจำคุก: เรือนจำที่ถูกจำคุก</div>
+      </div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-purple" onclick="event.stopPropagation()">ความสามารถ <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">ระบบความสามารถของบุคคล</div><div class="cc-sub">ผู้เยาว์ · คนไร้ความสามารถ · คนเสมือนไร้ความสามารถ</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 3 กลุ่มความสามารถ</h4>
+        <strong style="color:var(--orange)">① ผู้เยาว์</strong> (อายุต่ำกว่า 20 ปี): ต้องได้รับความยินยอมจากผู้แทนโดยชอบธรรม → ฝ่าฝืน = โมฆียะ<br><br>
+        <strong style="color:var(--red)">② คนไร้ความสามารถ</strong> (ศาลสั่ง): ทุกนิติกรรมต้องให้ผู้อนุบาลทำแทน → ฝ่าฝืน = โมฆียะ<br><br>
+        <strong style="color:var(--yellow)">③ คนเสมือนไร้ความสามารถ</strong> (ศาลสั่ง): นิติกรรมบางอย่างต้องได้รับความยินยอมจากผู้พิทักษ์</div>
+        <div class="rbox"><h4>💡 สูตรจำ</h4>"ไร้ฯ = โมฆียะ / เสมือนไร้ฯ = โมฆียะเฉพาะที่กฎหมายระบุ"</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- หน่วย 2 -->
+  <div class="unit-block" style="padding:0 1.5rem" id="u2">
+    <div class="unit-head"><div><div class="unit-num">หน่วยที่ 2</div><div class="unit-title">นิติบุคคล</div><div class="unit-sub">กำเนิด · สิทธิหน้าที่ · ภูมิลำเนา · ความรับผิด</div></div></div>
+
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-cyan" onclick="event.stopPropagation();openModal('m65')">ม.65 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">การกำเนิดนิติบุคคล</div><div class="cc-sub">ต้องมีกฎหมายรับรอง</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="ltext"><span class="ll">📜 มาตรา 65</span>นิติบุคคลจะมีขึ้นได้ก็แต่ด้วยอาศัยอำนาจแห่งประมวลกฎหมายแพ่งและพาณิชย์หรือกฎหมายอื่น</div>
+        <div class="abox"><h4>🔍 หลักสำคัญ</h4>• คณะบุคคลที่รวมตัวกันเองโดยไม่มีกฎหมายรับรอง = <span class="tag t-void">ไม่ใช่นิติบุคคล</span><br>• ตัวอย่าง: บริษัทจำกัด, มูลนิธิ, สมาคม, ราชการส่วนท้องถิ่น</div>
+      </div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-cyan" onclick="event.stopPropagation();openModal('m66')">ม.66-70 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">สิทธิ หน้าที่ ภูมิลำเนา และผู้แทน</div><div class="cc-sub">ขอบเขตตามวัตถุประสงค์ · ภูมิลำเนาได้หลายแห่ง</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 สาระสำคัญ</h4>
+        <strong>ม.66:</strong> มีสิทธิหน้าที่ภายใน <em>ขอบวัตถุประสงค์</em> เท่านั้น<br>
+        <strong>ม.67:</strong> ไม่มีสิทธิที่เฉพาะแก่บุคคลธรรมดา (แต่งงาน/รับบุตรบุญธรรม ไม่ได้)<br>
+        <strong>ม.68-69:</strong> ภูมิลำเนา = สำนักงานใหญ่ / มีสาขา = มีภูมิลำเนาหลายแห่งได้<br>
+        <strong>ม.70:</strong> ต้องมีผู้แทนอย่างน้อย 1 คน</div>
+        <div class="rbox"><h4>⚠️ ความรับผิด</h4>
+        • ผู้แทนทำละเมิด <em>ในหน้าที่</em> → นิติบุคคลรับผิด<br>
+        • ผู้แทนทำ <em>นอกวัตถุประสงค์</em> → ผู้แทนรับผิดส่วนตัว นิติบุคคลไม่ต้องรับผิด</div>
+      </div></div>
+    </div>
+  </div>
+</div>
+<!-- SECTION: นิติกรรม -->
+<div class="section-block" id="sec-nitikat">
+  <div style="padding:1rem 1.5rem .5rem"><div class="unit-pills">
+    <div class="up" style="color:var(--gold);border-color:var(--gold)" onclick="scrollTo('u3')">หน่วย 3</div>
+    <div class="up" style="color:var(--orange);border-color:var(--orange)" onclick="scrollTo('u4')">หน่วย 4</div>
+    <div class="up" style="color:var(--yellow);border-color:var(--yellow)" onclick="scrollTo('u5')">หน่วย 5</div>
+    <div class="up" style="color:var(--purple);border-color:var(--purple)" onclick="scrollTo('u6')">หน่วย 6</div>
+    <div class="up" style="color:var(--pink);border-color:var(--pink)" onclick="scrollTo('u7')">หน่วย 7</div>
+  </div></div>
+
+  <!-- หน่วย 3 -->
+  <div class="unit-block" style="padding:0 1.5rem" id="u3">
+    <div class="unit-head" style="border-left-color:var(--gold)"><div><div class="unit-num" style="color:var(--gold)">หน่วยที่ 3</div><div class="unit-title">นิติกรรมและการแสดงเจตนา</div><div class="unit-sub">ม.149-171 · รากฐานสำคัญของกฎหมายแพ่ง</div></div></div>
+
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-gold" onclick="event.stopPropagation();openModal('m149')">ม.149 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">องค์ประกอบนิติกรรม</div><div class="cc-sub">5 ประการ · หัวใจของหน่วยนี้</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="ltext"><span class="ll">📜 มาตรา 149</span>นิติกรรม หมายความว่า การใดอันทำลงโดยชอบด้วยกฎหมาย ด้วยใจสมัคร มุ่งโดยตรงต่อการผูกนิติสัมพันธ์ขึ้นระหว่างบุคคล เพื่อจะก่อ เปลี่ยนแปลง โอน สงวน หรือระงับซึ่งสิทธิ</div>
+        <div class="abox"><h4>🔍 5 องค์ประกอบ (สูตรจำ "บชใมเ")</h4>
+        ① <strong>บุคคล</strong>กระทำ<br>
+        ② <strong>ช</strong>อบด้วยกฎหมาย<br>
+        ③ <strong>ใจ</strong>สมัคร (ไม่ถูกบังคับ)<br>
+        ④ <strong>มุ่ง</strong>ผูกนิติสัมพันธ์<br>
+        ⑤ <strong>เ</strong>คลื่อนไหวแห่งสิทธิ (ก่อ/เปลี่ยน/โอน/สงวน/ระงับ)</div>
+      </div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-red" onclick="event.stopPropagation();openModal('m150')">ม.150 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">วัตถุประสงค์ที่เป็นโมฆะ</div><div class="cc-sub"><span class="tag t-void">โมฆะ</span> ขัดกฎหมาย · พ้นวิสัย · ขัดศีลธรรม</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 3 กรณีโมฆะตาม ม.150</h4>
+        ① ต้องห้าม<strong>ชัดแจ้ง</strong>โดยกฎหมาย<br>
+        ② เป็นการ<strong>พ้นวิสัย</strong> (เป็นไปไม่ได้)<br>
+        ③ ขัดต่อ<strong>ความสงบเรียบร้อย</strong>หรือ<strong>ศีลธรรมอันดี</strong>
+        <br><br>ตัวอย่าง: จ้างฆ่าคน / สัญญาซื้อขายดาวอังคาร / สัญญาค้าประเวณี</div>
+        <div class="rbox"><h4>ผล</h4><span class="tag t-void">โมฆะ</span> เสียเปล่าแต่ต้น · ผู้มีส่วนได้เสียทุกคนยกขึ้นอ้างได้</div>
+      </div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-red" onclick="event.stopPropagation();openModal('m154')">ม.154-155 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">เจตนาซ่อนเร้น และเจตนาลวง</div><div class="cc-sub"><span class="tag t-valid">สมบูรณ์</span> vs <span class="tag t-void">โมฆะ</span></div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 เปรียบเทียบ</h4>
+        <strong style="color:var(--yellow)">เจตนาซ่อนเร้น (ม.154):</strong> ในใจคิดอย่าง แสดงออกอีกอย่าง<br>
+        → ผล: <span class="tag t-valid">สมบูรณ์</span> เว้นแต่คู่กรณีรู้ถึงเจตนาที่ซ่อน → <span class="tag t-void">โมฆะ</span><br><br>
+        <strong style="color:var(--yellow)">เจตนาลวง (ม.155 ว.1):</strong> สมรู้กันแสดงเจตนาลวง<br>
+        → ผล: <span class="tag t-void">โมฆะ</span> แต่ยกต่อสู้บุคคลภายนอกผู้สุจริตไม่ได้<br><br>
+        <strong style="color:var(--orange)">นิติกรรมอำพราง (ม.155 ว.2):</strong> ทำนิติกรรมหนึ่งบังหน้าอีกนิติกรรม<br>
+        → ที่บังหน้า: <span class="tag t-void">โมฆะ</span> / ที่ถูกอำพราง: นำกฎหมายของนิติกรรมนั้นมาบังคับ</div>
+      </div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-orange" onclick="event.stopPropagation();openModal('m157')">ม.156-164 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">ความวิปริตแห่งการแสดงเจตนา</div><div class="cc-sub"><span class="tag t-void">โมฆะ</span> สำคัญผิดสาระ · <span class="tag t-voidable">โมฆียะ</span> สำคัญผิดคุณสมบัติ/กลฉ้อฉล/ข่มขู่</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 ตารางเปรียบเทียบ</h4>
+        <table style="width:100%;border-collapse:collapse;font-size:.8rem">
+          <tr style="background:rgba(255,255,255,.05)"><th style="padding:.35rem;text-align:left;border-bottom:1px solid var(--border)">มาตรา</th><th style="padding:.35rem;text-align:left;border-bottom:1px solid var(--border)">ประเภท</th><th style="padding:.35rem;text-align:left;border-bottom:1px solid var(--border)">ผล</th></tr>
+          <tr style="background:rgba(239,68,68,.04)"><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">ม.156</td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">สำคัญผิดในสาระสำคัญ (ลักษณะนิติกรรม/ตัวบุคคล/ทรัพย์)</td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)"><span class="tag t-void">โมฆะ</span></td></tr>
+          <tr style="background:rgba(249,115,22,.04)"><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">ม.157</td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">สำคัญผิดในคุณสมบัติ (เช่น คิดว่าพระแท้)</td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)"><span class="tag t-voidable">โมฆียะ</span></td></tr>
+          <tr style="background:rgba(249,115,22,.04)"><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">ม.159</td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">กลฉ้อฉล (ถูกหลอก "ถึงขนาด")</td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)"><span class="tag t-voidable">โมฆียะ</span></td></tr>
+          <tr style="background:rgba(249,115,22,.04)"><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">ม.164</td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">ข่มขู่ (กลัว "ถึงขนาด" ภัยใกล้และร้ายแรง)</td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)"><span class="tag t-voidable">โมฆียะ</span></td></tr>
+        </table>
+        <br>💡 <strong>สูตรจำ:</strong> "สำคัญผิดสาระ = โมฆะ / คุณสมบัติ+ฉ้อฉล+ขู่ = โมฆียะ"</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- หน่วย 4 -->
+  <div class="unit-block" style="padding:0 1.5rem" id="u4">
+    <div class="unit-head" style="border-left-color:var(--orange)"><div><div class="unit-num" style="color:var(--orange)">หน่วยที่ 4</div><div class="unit-title">โมฆะกรรม และโมฆียะกรรม</div><div class="unit-sub">ม.172-181 · ผลทางกฎหมายและสิทธิบอกล้าง</div></div></div>
+
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-red" onclick="event.stopPropagation();openModal('m172')">ม.172 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">โมฆะกรรม — ผลทางกฎหมาย</div><div class="cc-sub"><span class="tag t-void">เสียเปล่าแต่ต้น</span> ผู้มีส่วนได้เสียอ้างได้ทุกคน</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 ลักษณะโมฆะกรรม</h4>
+        • ไม่ก่อสิทธิหน้าที่แต่แรก · ไม่ต้องบอกล้าง · ไม่มีอายุความ<br>
+        • <strong>ผู้มีส่วนได้เสียทุกคน</strong>ยกขึ้นอ้างได้ (ไม่จำกัดเฉพาะคู่สัญญา)<br>
+        • หากชำระไปแล้ว → คืนตามลาภมิควรได้ (ม.173)</div>
+        <div class="rbox"><h4>⚠️ เหตุโมฆะ</h4>ม.150 (วัตถุประสงค์) · ม.152 (แบบ) · ม.154 (เจตนาลวงที่คู่กรณีรู้) · ม.155 ว.1 (เจตนาลวงสมรู้)</div>
+      </div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-orange" onclick="event.stopPropagation();openModal('m175')">ม.175-181 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">โมฆียะกรรม — บอกล้าง/สัตยาบัน</div><div class="cc-sub"><span class="tag t-voidable">สมบูรณ์จนบอกล้าง</span> · บอกล้างมีผลย้อนหลัง</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 โครงสร้างโมฆียะ</h4>
+        <strong>ผู้มีสิทธิบอกล้าง:</strong> เฉพาะผู้ได้รับความคุ้มครอง (ผู้เยาว์/ถูกกลฉ้อฉล/ถูกข่มขู่ ฯลฯ)<br><br>
+        <strong>ผลการบอกล้าง (ม.176):</strong> ถือว่าโมฆะ<strong>มาแต่เริ่มแรก</strong> (ย้อนหลัง)<br><br>
+        <strong>ผลการให้สัตยาบัน (ม.177):</strong> นิติกรรมสมบูรณ์ตลอดไป ให้สัตยาบันโดยปริยายได้<br><br>
+        <strong>อายุความบอกล้าง (ม.181):</strong> 1 ปีนับแต่รู้เหตุ หรือ 10 ปีนับแต่ทำนิติกรรม</div>
+        <div class="rbox"><h4>💡 สูตรจำ</h4>"โมฆียะ ยังมีชีวิต รอบอกล้าง / บอกล้างแล้วย้อนหลังเป็นโมฆะ / สัตยาบันแล้วสมบูรณ์ตลอดกาล"</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- หน่วย 5 -->
+  <div class="unit-block" style="padding:0 1.5rem" id="u5">
+    <div class="unit-head" style="border-left-color:var(--yellow)"><div><div class="unit-num" style="color:var(--yellow)">หน่วยที่ 5</div><div class="unit-title">เงื่อนไข เงื่อนเวลา ระยะเวลา และอายุความ</div><div class="unit-sub">ม.182-193/35 · กฎเกณฑ์เวลาที่ใช้กับทุกเรื่อง</div></div></div>
+
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-yellow" onclick="event.stopPropagation();openModal('m183')">ม.182-193 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">เงื่อนไขและเงื่อนเวลา</div><div class="cc-sub">ไม่แน่นอน vs แน่นอน · ก่อน vs หลัง</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 ตาราง 4 ช่อง</h4>
+        <table style="width:100%;border-collapse:collapse;font-size:.8rem">
+          <tr style="background:rgba(255,255,255,.05)"><th style="padding:.4rem;border-bottom:1px solid var(--border)">ประเภท</th><th style="padding:.4rem;border-bottom:1px solid var(--border)">ลักษณะ</th><th style="padding:.4rem;border-bottom:1px solid var(--border)">ผล</th></tr>
+          <tr><td style="padding:.4rem;border-bottom:1px solid rgba(255,255,255,.05)">เงื่อนไขบังคับก่อน (ม.183 ว.1)</td><td style="padding:.4rem;border-bottom:1px solid rgba(255,255,255,.05)">เหตุการณ์ไม่แน่นอน เกิดแล้วมีผล</td><td style="padding:.4rem;border-bottom:1px solid rgba(255,255,255,.05)">"สอบผ่านแล้วให้รถ" → รอเงื่อนไขสำเร็จ</td></tr>
+          <tr><td style="padding:.4rem;border-bottom:1px solid rgba(255,255,255,.05)">เงื่อนไขบังคับหลัง (ม.183 ว.2)</td><td style="padding:.4rem;border-bottom:1px solid rgba(255,255,255,.05)">มีผลแล้ว เมื่อเงื่อนไขสำเร็จจึงสิ้นผล</td><td style="padding:.4rem;border-bottom:1px solid rgba(255,255,255,.05)">"เช่าจนลูกกลับมา" → สิ้นสุดเมื่อลูกกลับ</td></tr>
+          <tr><td style="padding:.4rem;border-bottom:1px solid rgba(255,255,255,.05)">เงื่อนเวลาเริ่มต้น (ม.187)</td><td style="padding:.4rem;border-bottom:1px solid rgba(255,255,255,.05)">เหตุการณ์แน่นอน ยังทวงไม่ได้</td><td style="padding:.4rem;border-bottom:1px solid rgba(255,255,255,.05)">"กู้วันนี้ ชำระเดือนหน้า"</td></tr>
+          <tr><td style="padding:.4rem">เงื่อนเวลาสิ้นสุด (ม.189)</td><td style="padding:.4rem">มีผลแล้ว ถึงเวลาก็สิ้นผล</td><td style="padding:.4rem">"เช่าถึง 31 ธ.ค."</td></tr>
+        </table></div>
+      </div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-yellow" onclick="event.stopPropagation();openModal('m193_30')">ม.193/9-35 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">อายุความ</div><div class="cc-sub">ทั่วไป 10 ปี · สะดุดหยุดลง · ห้ามศาลยกเอง</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 หลักสำคัญอายุความ</h4>
+        • อายุความทั่วไป: <strong>10 ปี</strong> (ม.193/30)<br>
+        • การนับ: ไม่นับวันแรก (ม.193/3) · วันสุดท้ายหยุดราชการ→นับวันทำการถัดไป<br>
+        • <strong>อายุความสะดุด (ม.193/14):</strong> เวลาที่ผ่านไปเสียเปล่า เริ่มนับใหม่<br>
+          - ลูกหนี้รับสภาพหนี้ (ทำหนังสือ/จ่ายดอก/จ่ายบางส่วน)<br>
+          - เจ้าหนี้ฟ้องคดี<br>
+        • <strong>ม.193/29:</strong> ศาลยกอายุความขึ้นเองไม่ได้ ต้องให้ลูกหนี้ยกขึ้นต่อสู้</div>
+        <div class="rbox"><h4>💡 สูตรจำ</h4>"ขาดอายุความ = หนี้ยังมี แต่บังคับไม่ได้ / ศาลยกเองไม่ได้ / สะดุดแล้วเริ่มนับใหม่จากศูนย์"</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- หน่วย 6 -->
+  <div class="unit-block" style="padding:0 1.5rem" id="u6">
+    <div class="unit-head" style="border-left-color:var(--purple)"><div><div class="unit-num" style="color:var(--purple)">หน่วยที่ 6</div><div class="unit-title">หลักทั่วไปของสัญญาและการก่อให้เกิดสัญญา</div><div class="unit-sub">ม.354-366 · คำเสนอ + คำสนอง = สัญญา</div></div></div>
+
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-purple" onclick="event.stopPropagation();openModal('m354')">ม.354-361 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">คำเสนอและคำสนอง</div><div class="cc-sub">ตรงกัน → สัญญาเกิด</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 ระบบคำเสนอ</h4>
+        <strong>ม.354:</strong> คำเสนอมีกำหนดเวลา → ถอนก่อนหมดเวลาไม่ได้<br>
+        <strong>ม.355:</strong> ห่างกัน+ไม่กำหนดเวลา → รอจนควรได้รับคำตอบ<br>
+        <strong>ม.356:</strong> เฉพาะหน้า/โทรศัพท์ → ต้องสนองทันที<br><br>
+        <strong>ระบบคำสนอง:</strong><br>
+        • ต้องตรงกับคำเสนอ ไม่แก้ไข ไม่เพิ่มเติม<br>
+        • ม.358-359: คำสนองล่าช้า/มีข้อแก้ไข = เป็น<strong>คำเสนอขึ้นใหม่</strong><br>
+        • <strong>สัญญาเกิดเมื่อ</strong> คำสนองไปถึงผู้เสนอ (ม.361)</div>
+        <div class="rbox"><h4>💡 สูตรจำ</h4>"เสนอ+สนองตรงกัน = สัญญาเกิด / สนองล่าช้า/แก้ไข = เสนอขึ้นใหม่ / ห่างกัน = สัญญาเกิดเมื่อสนองถึง"</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- หน่วย 7 -->
+  <div class="unit-block" style="padding:0 1.5rem" id="u7">
+    <div class="unit-head" style="border-left-color:var(--pink)"><div><div class="unit-num" style="color:var(--pink)">หน่วยที่ 7</div><div class="unit-title">ผลแห่งสัญญา มัดจำ เบี้ยปรับ และการเลิกสัญญา</div><div class="unit-sub">ม.369-394 · สัญญาต่างตอบแทน · บาปเคราะห์ · มัดจำ · เบี้ยปรับ</div></div></div>
+
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-pink" onclick="event.stopPropagation();openModal('m370')">ม.370-372 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">การรับบาปเคราะห์ (Risk of Loss)</div><div class="cc-sub">เมื่อทรัพย์เสียหายโดยไม่มีความผิด ใครรับเคราะห์?</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 ตาราง 3 กรณี</h4>
+        <table style="width:100%;border-collapse:collapse;font-size:.8rem">
+          <tr style="background:rgba(255,255,255,.05)"><th style="padding:.4rem;border-bottom:1px solid var(--border)">มาตรา</th><th style="padding:.4rem;border-bottom:1px solid var(--border)">ประเภทหนี้</th><th style="padding:.4rem;border-bottom:1px solid var(--border)">ใครรับบาปเคราะห์?</th></tr>
+          <tr><td style="padding:.4rem;border-bottom:1px solid rgba(255,255,255,.05)">ม.370</td><td style="padding:.4rem;border-bottom:1px solid rgba(255,255,255,.05)">ทรัพย์เฉพาะสิ่ง ยังไม่ส่งมอบ</td><td style="padding:.4rem;border-bottom:1px solid rgba(255,255,255,.05)"><strong style="color:var(--orange)">เจ้าหนี้ (ผู้ซื้อ)</strong> ต้องจ่ายเงินแม้ของเสีย</td></tr>
+          <tr><td style="padding:.4rem;border-bottom:1px solid rgba(255,255,255,.05)">ม.371</td><td style="padding:.4rem;border-bottom:1px solid rgba(255,255,255,.05)">มีเงื่อนไขบังคับก่อน ของพังก่อนสำเร็จ</td><td style="padding:.4rem;border-bottom:1px solid rgba(255,255,255,.05)"><strong style="color:var(--teal)">ลูกหนี้ (ผู้ขาย)</strong> หมดสิทธิรับเงิน</td></tr>
+          <tr><td style="padding:.4rem">ม.372</td><td style="padding:.4rem">ไม่ใช่ทรัพย์เฉพาะสิ่ง/พ้นวิสัย</td><td style="padding:.4rem"><strong style="color:var(--teal)">ลูกหนี้</strong> หมดสิทธิรับชำระหนี้ตอบแทน</td></tr>
+        </table></div>
+      </div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-pink" onclick="event.stopPropagation();openModal('m377')">ม.377-385 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">มัดจำ vs เบี้ยปรับ</div><div class="cc-sub">ส่งมอบวันทำสัญญา vs ข้อตกลงล่วงหน้า</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 เปรียบเทียบมัดจำ vs เบี้ยปรับ</h4>
+        <table style="width:100%;border-collapse:collapse;font-size:.8rem">
+          <tr style="background:rgba(255,255,255,.05)"><th style="padding:.4rem;border-bottom:1px solid var(--border)"></th><th style="padding:.4rem;border-bottom:1px solid var(--border)">มัดจำ (ม.377)</th><th style="padding:.4rem;border-bottom:1px solid var(--border)">เบี้ยปรับ (ม.379)</th></tr>
+          <tr><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">เมื่อไหร่</td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)"><strong>ส่งมอบวันทำสัญญา</strong></td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">ข้อตกลงล่วงหน้า</td></tr>
+          <tr><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">ผู้ให้ผิด</td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">อีกฝ่าย "ริบ"</td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">เจ้าหนี้ริบได้ทันที</td></tr>
+          <tr><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">ผู้รับผิด</td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">ต้อง "คืน" มัดจำ</td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">ต้องจ่ายตามข้อตกลง</td></tr>
+          <tr><td style="padding:.35rem">อำนาจศาล</td><td style="padding:.35rem">ลดทอนมัดจำได้</td><td style="padding:.35rem"><strong>ม.383: ลดทอนได้</strong>ถ้าสูงเกินส่วน</td></tr>
+        </table></div>
+      </div></div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-pink" onclick="event.stopPropagation();openModal('m386')">ม.386-394 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">การเลิกสัญญา</div><div class="cc-sub">กลับคืนสู่ฐานะเดิม</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 สาระสำคัญ</h4>
+        • เลิกโดย<strong>ข้อตกลง</strong> หรือ <strong>บทบัญญัติกฎหมาย</strong><br>
+        • ม.387: ลูกหนี้ผิดนัด เจ้าหนี้กำหนดเวลาพอสมควรแล้วยังไม่ชำระ → บอกเลิกได้<br>
+        • ม.388: ถ้าลักษณะสัญญาชี้ว่าสำเร็จภายในเวลา ชำระช้า = เจ้าหนี้บอกเลิกได้ทันที<br>
+        • ผลเลิกสัญญา (ม.391): <strong>กลับคืนสู่ฐานะเดิม</strong> คืนสิ่งที่รับมา พร้อมดอกเบี้ย</div>
+      </div></div>
+    </div>
+  </div>
+</div>
+<!-- SECTION: หนี้ -->
+<div class="section-block" id="sec-ni">
+  <div style="padding:1rem 1.5rem .5rem"><div class="unit-pills">
+    <div class="up" style="color:var(--teal);border-color:var(--teal)" onclick="scrollTo('u8')">หน่วย 8</div>
+    <div class="up" style="color:var(--green);border-color:var(--green)" onclick="scrollTo('u9')">หน่วย 9</div>
+    <div class="up" style="color:var(--cyan);border-color:var(--cyan)" onclick="scrollTo('u10')">หน่วย 10</div>
+    <div class="up" style="color:var(--blue);border-color:var(--blue)" onclick="scrollTo('u11')">หน่วย 11</div>
+    <div class="up" style="color:var(--indigo);border-color:var(--indigo)" onclick="scrollTo('u12')">หน่วย 12</div>
+    <div class="up" style="color:var(--purple);border-color:var(--purple)" onclick="scrollTo('u13')">หน่วย 13</div>
+    <div class="up" style="color:var(--orange);border-color:var(--orange)" onclick="scrollTo('u14')">หน่วย 14</div>
+    <div class="up" style="color:var(--yellow);border-color:var(--yellow)" onclick="scrollTo('u15')">หน่วย 15</div>
+  </div></div>
+
+  <!-- หน่วย 8 -->
+  <div class="unit-block" style="padding:0 1.5rem" id="u8">
+    <div class="unit-head" style="border-left-color:var(--teal)"><div><div class="unit-num" style="color:var(--teal)">หน่วยที่ 8</div><div class="unit-title">หลักทั่วไปของหนี้</div><div class="unit-sub">ม.194-213 · บุคคลสิทธิ · วัตถุแห่งหนี้ · บ่อเกิดแห่งหนี้</div></div></div>
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-teal" onclick="event.stopPropagation();openModal('m194')">ม.194-195 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">ความหมายและวัตถุแห่งหนี้</div><div class="cc-sub">เจ้าหนี้ · ลูกหนี้ · วัตถุแห่งหนี้ 3 ประเภท</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 สาระสำคัญ</h4>
+        <strong>ม.194:</strong> หนี้ = ความผูกพันที่เจ้าหนี้เรียกให้ลูกหนี้ชำระได้<br><br>
+        <strong>บุคคลสิทธิ vs ทรัพยสิทธิ:</strong><br>
+        • บุคคลสิทธิ: บังคับได้<em>เฉพาะลูกหนี้</em> (สัมพัทธ์)<br>
+        • ทรัพยสิทธิ: บังคับได้<em>กับทุกคน</em> (สมบูรณ์)<br><br>
+        <strong>วัตถุแห่งหนี้ 3 ประเภท:</strong><br>
+        ① การส่งมอบทรัพย์ (ม.195 ปานกลาง)<br>
+        ② การกระทำการ<br>
+        ③ การงดเว้นกระทำการ<br><br>
+        <strong>บ่อเกิดแห่งหนี้:</strong> นิติกรรม / ละเมิด / จัดการงานนอกสั่ง / ลาภมิควรได้</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- หน่วย 9 -->
+  <div class="unit-block" style="padding:0 1.5rem" id="u9">
+    <div class="unit-head" style="border-left-color:var(--green)"><div><div class="unit-num" style="color:var(--green)">หน่วยที่ 9</div><div class="unit-title">การผิดนัดและการไม่ชำระหนี้</div><div class="unit-sub">ม.204-232 · ผิดนัด/พ้นวิสัย/ค่าเสียหาย</div></div></div>
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-green" onclick="event.stopPropagation();openModal('m204')">ม.204 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">ลูกหนี้ผิดนัด</div><div class="cc-sub">มีกำหนด vs ไม่มีกำหนด</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="ltext"><span class="ll">📜 มาตรา 204</span>ถ้าหนี้ถึงกำหนดชำระแล้ว และภายหลังแต่นั้น เจ้าหนี้ได้ให้คำเตือนแก่ลูกหนี้แล้ว ลูกหนี้ยังไม่ชำระหนี้ไซร้ ลูกหนี้ได้ชื่อว่าผิดนัดนับแต่เวลาที่ให้คำเตือนนั้น ถ้าได้กำหนดเวลาชำระหนี้ไว้ตามวันแห่งปฏิทิน และลูกหนี้มิได้ชำระหนี้ตามกำหนดไซร้ ให้ถือว่าลูกหนี้ผิดนัดโดยมิพักต้องเตือนเลย</div>
+        <div class="abox"><h4>🔍 2 กรณีผิดนัด</h4>
+        <strong style="color:var(--orange)">วรรค 1 (ไม่กำหนดวัน):</strong> ต้อง<em>เตือน</em>ก่อน ผิดนัดเมื่อเตือนแล้วไม่จ่าย<br>
+        <strong style="color:var(--red)">วรรค 2 (กำหนดตามปฏิทิน):</strong> ผิดนัด<em>ทันที</em> ไม่ต้องเตือน<br><br>
+        ⚠️ "ชำระภายใน 10 วัน" = ไม่ใช่ปฏิทิน ต้องเตือนก่อน!</div>
+        <div class="rbox"><h4>ม.207 เจ้าหนี้ผิดนัด</h4>ลูกหนี้ขอชำระชอบแล้ว แต่เจ้าหนี้ไม่รับโดยไม่มีเหตุ → เจ้าหนี้ผิดนัด → ลูกหนี้หลุดพ้นความรับผิดดอกเบี้ยและค่าเสียหาย</div>
+      </div></div>
+    </div>
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-green" onclick="event.stopPropagation();openModal('m218')">ม.218-222 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">ชำระหนี้พ้นวิสัย และค่าสินไหมทดแทน</div><div class="cc-sub">ใครผิด → ใครรับผิดชอบ</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 พ้นวิสัย</h4>
+        <strong>ม.218:</strong> เพราะความผิดลูกหนี้ → ต้องใช้ค่าสินไหมทดแทน<br>
+        <strong>ม.219:</strong> เพราะความผิดเจ้าหนี้/เหตุภายนอก → ลูกหนี้หลุดพ้น ไม่ต้องรับผิด<br><br>
+        <strong>ม.222 ค่าเสียหาย:</strong><br>
+        ① ความเสียหายสามัญ (ทั่วไปที่คาดได้)<br>
+        ② ความเสียหายพิเศษ (เฉพาะกรณีที่คู่สัญญาคาดเห็นได้ล่วงหน้า)</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- หน่วย 10 -->
+  <div class="unit-block" style="padding:0 1.5rem" id="u10">
+    <div class="unit-head" style="border-left-color:var(--cyan)"><div><div class="unit-num" style="color:var(--cyan)">หน่วยที่ 10</div><div class="unit-title">การใช้สิทธิเรียกร้องของลูกหนี้ และการเพิกถอนการฉ้อฉล</div><div class="unit-sub">ม.233-240 · "เฉย→สวมสิทธิ" · "โกง→เพิกถอน"</div></div></div>
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-cyan" onclick="event.stopPropagation();openModal('m233')">ม.233-236 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">การใช้สิทธิเรียกร้องของลูกหนี้ (สวมสิทธิ)</div><div class="cc-sub">ลูกหนี้ไม่ทำ เจ้าหนี้ทำแทน</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 สาระสำคัญ</h4>
+        <strong>ม.233:</strong> ลูกหนี้ขัดขืนไม่ยอมใช้สิทธิ → เจ้าหนี้ใช้สิทธิแทนในนามตนเองได้<br>
+        <strong>ม.234 (ข้อยกเว้น):</strong> ไม่ได้ในสิทธิ<em>เฉพาะตัวโดยแท้</em> เช่น ค่าอุปการะ / สิทธิฟ้องหย่า<br>
+        <strong>ม.235:</strong> เรียกให้ชำระทั้งหมดแก่ตนได้ แต่ถ้าได้มาเกิน ต้องคืนลูกหนี้</div>
+      </div></div>
+    </div>
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-cyan" onclick="event.stopPropagation();openModal('m237')">ม.237-240 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">การเพิกถอนการฉ้อฉล</div><div class="cc-sub">ลูกหนี้โอนทรัพย์หนี → เจ้าหนี้ขอให้ศาลเพิกถอน</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 เงื่อนไข ม.237</h4>
+        • ทรัพย์สินลูกหนี้ลดลงจนไม่พอชำระหนี้<br>
+        • <strong>มีค่าตอบแทน:</strong> ลูกหนี้รู้ + ผู้รับโอนรู้ ว่าเจ้าหนี้เสียเปรียบ<br>
+        • <strong>เสน่หา (ฟรี):</strong> ลูกหนี้รู้ฝ่ายเดียว ผู้รับไม่ต้องรู้<br>
+        • <strong>ม.238:</strong> ไม่กระทบสิทธิบุคคลภายนอกผู้สุจริตและเสียค่าตอบแทน<br>
+        • <strong>ม.240 อายุความ:</strong> 1 ปีนับแต่รู้เหตุ หรือ 10 ปีนับแต่ทำนิติกรรม</div>
+        <div class="rbox"><h4>💡 สูตรจำ</h4>"เฉย→สวม(233) / โกง→เพิกถอน(237) / เพิกถอนต้องฟ้องศาล / สวมสิทธิไม่ต้องฟ้องศาลเสมอ"</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- หน่วย 11 -->
+  <div class="unit-block" style="padding:0 1.5rem" id="u11">
+    <div class="unit-head" style="border-left-color:var(--blue)"><div><div class="unit-num" style="color:var(--blue)">หน่วยที่ 11</div><div class="unit-title">สิทธิยึดหน่วงและบุริมสิทธิ</div><div class="unit-sub">ม.241-289 · "ยึดไว้" vs "ได้รับก่อน"</div></div></div>
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-blue" onclick="event.stopPropagation();openModal('m241')">ม.241-250 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">สิทธิยึดหน่วง</div><div class="cc-sub">ยึดไว้ได้จนได้รับชำระหนี้ครบ · ขายทอดตลาดไม่ได้!</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 4 องค์ประกอบ (สูตรจำ "ครหถช")</h4>
+        ① <strong>คร</strong>อบครองทรัพย์ของผู้อื่น<br>
+        ② <strong>ห</strong>นี้เกี่ยวเนื่องกับทรัพย์นั้น<br>
+        ③ หนี้<strong>ถ</strong>ึงกำหนดชำระแล้ว<br>
+        ④ เข้าครอบครองโดย<strong>ช</strong>อบด้วยกฎหมาย (ขโมยมาไม่ได้!)</div>
+        <div class="rbox"><h4>⚠️ จุดหลอก</h4>สิทธิยึดหน่วง = "ยึดไว้" เท่านั้น ไม่สามารถ<em>ขายทอดตลาดเอาเงิน</em>เองได้ (ต้องฟ้องศาลบังคับจำนอง/คดีอื่น)</div>
+      </div></div>
+    </div>
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-blue" onclick="event.stopPropagation();openModal('m251')">ม.251+ <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">บุริมสิทธิ</div><div class="cc-sub">สิทธิได้รับชำระหนี้<em>ก่อน</em>เจ้าหนี้อื่น</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 2 ประเภท</h4>
+        <strong style="color:var(--orange)">บุริมสิทธิสามัญ:</strong> บังคับเหนือ<em>ทรัพย์สินทั้งหมด</em>ของลูกหนี้<br>
+        เช่น ค่าภาษี / ค่าจ้างคนรับใช้ / ค่าฤชาธรรมเนียมศาล<br><br>
+        <strong style="color:var(--blue)">บุริมสิทธิพิเศษ:</strong> บังคับเหนือ<em>ทรัพย์เฉพาะสิ่ง</em><br>
+        • เหนือสังหาริมทรัพย์: เจ้าของหอพัก/โรงแรมมีบุริมสิทธิเหนือของในห้อง<br>
+        • เหนืออสังหาริมทรัพย์: รับเหมาสร้างบ้าน / ซื้อขายอสังหาริมทรัพย์</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- หน่วย 12 -->
+  <div class="unit-block" style="padding:0 1.5rem" id="u12">
+    <div class="unit-head" style="border-left-color:var(--indigo)"><div><div class="unit-num" style="color:var(--indigo)">หน่วยที่ 12</div><div class="unit-title">ลูกหนี้และเจ้าหนี้หลายคน</div><div class="unit-sub">ม.290-302 · แบ่งได้/แบ่งไม่ได้/ร่วมกัน</div></div></div>
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-indigo" onclick="event.stopPropagation();openModal('m291')">ม.291-298 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">ลูกหนี้ร่วม</div><div class="cc-sub">เรียกคนใดก็ได้ให้ชำระทั้งหมด</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 สาระสำคัญ</h4>
+        <strong>ม.296 (แบ่งกันได้):</strong> ลูกหนี้แต่ละคนรับผิดส่วนเท่าๆ กัน<br>
+        <strong>ม.298 (แบ่งกันไม่ได้):</strong> ต้องรับผิดเช่นลูกหนี้ร่วม<br><br>
+        <strong>ม.291 ลูกหนี้ร่วม:</strong> เจ้าหนี้เรียกจากคนใดก็ได้ให้ชำระ<em>สิ้นเชิง</em>หรือบางส่วน<br>
+        <strong>ม.292:</strong> การกระทำของลูกหนี้ร่วมคนหนึ่ง<em>เป็นคุณ</em>แก่เจ้าหนี้ → เป็นประโยชน์แก่คนอื่นด้วย<br>
+        <strong>ม.294 (อายุความ):</strong> สะดุดหยุดที่คนหนึ่ง → มีผลถึงคนอื่นด้วย!<br>
+        <strong>ม.296 ไล่เบี้ย:</strong> ชำระเกินส่วน → ไล่เบี้ยลูกหนี้ร่วมคนอื่นได้</div>
+      </div></div>
+    </div>
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-indigo" onclick="event.stopPropagation();openModal('m299')">ม.299-302 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">เจ้าหนี้ร่วม</div><div class="cc-sub">ลูกหนี้ชำระให้เจ้าหนี้คนใดก็ได้</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 สาระสำคัญ</h4>
+        <strong>ม.299 ว.1:</strong> ลูกหนี้จะชำระให้เจ้าหนี้คนใดคนหนึ่งก็ได้<br>
+        • เจ้าหนี้คนหนึ่งเรียกชำระทั้งหมดหรือบางส่วนได้<br>
+        • เมื่อชำระแล้ว เจ้าหนี้ร่วมแบ่งกันตามที่ตกลง</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- หน่วย 13 -->
+  <div class="unit-block" style="padding:0 1.5rem" id="u13">
+    <div class="unit-head" style="border-left-color:var(--purple)"><div><div class="unit-num" style="color:var(--purple)">หน่วยที่ 13</div><div class="unit-title">การรับช่วงสิทธิ และการโอนสิทธิเรียกร้อง</div><div class="unit-sub">ม.226-232 / ม.303-313 · กฎหมายส่งสิทธิ vs เจ้าหนี้ขายสิทธิ</div></div></div>
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-purple" onclick="event.stopPropagation();openModal('m226')">ม.226-232 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">การรับช่วงสิทธิ (Subrogation)</div><div class="cc-sub">เกิดขึ้นเองตามกฎหมาย · ไม่ต้องบอกกล่าว</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 ม.229 — 3 กรณีที่รับช่วงสิทธิโดยกฎหมาย</h4>
+        ① เจ้าหนี้ลำดับรองจ่ายให้เจ้าหนี้ลำดับก่อน เพื่อรับสิทธิในหลักประกัน<br>
+        ② ผู้ซื้อทรัพย์ติดจำนอง จ่ายให้เจ้าหนี้จำนองเพื่อปลดภาระ<br>
+        ③ ลูกหนี้ร่วม/ผู้ค้ำประกันจ่ายแทนลูกหนี้ → รับช่วงสิทธิไล่เบี้ยได้<br><br>
+        ผล: สิทธิย้ายไปผู้รับช่วง <em>เท่าที่ชำระไป</em></div>
+      </div></div>
+    </div>
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-purple" onclick="event.stopPropagation();openModal('m306')">ม.303-313 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">การโอนสิทธิเรียกร้อง (Assignment)</div><div class="cc-sub">เกิดจากสัญญา · ต้องบอกกล่าวลูกหนี้</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 ม.306 — เงื่อนไขที่สมบูรณ์</h4>
+        ต้องทำอย่างใดอย่างหนึ่ง:<br>
+        ① <strong>บอกกล่าว</strong>เป็นหนังสือไปยังลูกหนี้ หรือ<br>
+        ② ลูกหนี้<strong>ยินยอม</strong>เป็นหนังสือ<br><br>
+        <strong>ม.308 ข้อต่อสู้:</strong> ลูกหนี้มีข้อต่อสู้ต่อผู้โอนก่อนได้รับบอกกล่าว → ยกขึ้นต่อสู้ผู้รับโอนได้</div>
+        <div class="rbox"><h4>💡 สูตรจำ</h4>"รับช่วง = กฎหมายส่งให้ ไม่ต้องบอกกล่าว / โอนสิทธิ = เจ้าหนี้ขายสิทธิ ต้องบอกกล่าว(306)"</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- หน่วย 14 -->
+  <div class="unit-block" style="padding:0 1.5rem" id="u14">
+    <div class="unit-head" style="border-left-color:var(--orange)"><div><div class="unit-num" style="color:var(--orange)">หน่วยที่ 14</div><div class="unit-title">ความระงับแห่งหนี้และการปลดหนี้</div><div class="unit-sub">ม.314-353 · 5 วิธีระงับหนี้</div></div></div>
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-orange" onclick="event.stopPropagation()">5 วิธีระงับหนี้ <span class="click-icon">📋</span></span>
+        <div><div class="cc-title">ภาพรวม 5 วิธีระงับหนี้</div><div class="cc-sub">ชำระ · ปลด · หักกลบ · แปลง · เกลื่อน</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 ตาราง 5 วิธี</h4>
+        <table style="width:100%;border-collapse:collapse;font-size:.8rem">
+          <tr style="background:rgba(255,255,255,.05)"><th style="padding:.4rem;border-bottom:1px solid var(--border)">วิธี</th><th style="padding:.4rem;border-bottom:1px solid var(--border)">มาตรา</th><th style="padding:.4rem;border-bottom:1px solid var(--border)">หลักสำคัญ</th></tr>
+          <tr><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">1. ชำระหนี้</td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)"><span class="mat-num c-orange" onclick="openModal('m314')">ม.314</span></td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">บุคคลภายนอกชำระแทนได้ / ต้องชำระให้เจ้าหนี้หรือผู้มีอำนาจรับ</td></tr>
+          <tr><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">2. ปลดหนี้</td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)"><span class="mat-num c-orange" onclick="openModal('m340')">ม.340</span></td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">นิติกรรมฝ่ายเดียวของเจ้าหนี้ / หนี้มีหนังสือ → ต้องทำเป็นหนังสือ/คืนเอกสาร/ขีดฆ่า</td></tr>
+          <tr><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">3. หักกลบลบหนี้</td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)"><span class="mat-num c-orange" onclick="openModal('m341')">ม.341</span></td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">ต่างเป็นเจ้าหนี้+ลูกหนี้ / วัตถุเดียวกัน / ถึงกำหนด / <strong>ห้ามหักหนี้ละเมิด (344)</strong></td></tr>
+          <tr><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">4. แปลงหนี้ใหม่</td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)"><span class="mat-num c-orange" onclick="openModal('m349')">ม.349</span></td><td style="padding:.35rem;border-bottom:1px solid rgba(255,255,255,.05)">เปลี่ยนสาระสำคัญ (วัตถุ/ลูกหนี้/เจ้าหนี้) / สิทธิอุปกรณ์ระงับตาม</td></tr>
+          <tr><td style="padding:.35rem">5. หนี้เกลื่อนกลืน</td><td style="padding:.35rem"><span class="mat-num c-orange" onclick="openModal('m353')">ม.353</span></td><td style="padding:.35rem">สิทธิเจ้าหนี้+หน้าที่ลูกหนี้ตกแก่บุคคลเดียวกัน</td></tr>
+        </table></div>
+      </div></div>
+    </div>
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-orange" onclick="event.stopPropagation();openModal('m340')">ม.340 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">การปลดหนี้ — จุดหลอกข้อสอบ</div><div class="cc-sub">หนี้มีหนังสือ ปากเปล่าปลดไม่ได้!</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="rbox"><h4>⚠️ ม.340 ว.2 — วิธีปลดหนี้ที่มีหลักฐานหนังสือ</h4>
+        ต้องทำอย่างใดอย่างหนึ่ง:<br>
+        ① ทำ<strong>หนังสือปลดหนี้</strong><br>
+        ② <strong>เวนคืนเอกสาร</strong>สัญญา<br>
+        ③ <strong>ขีดฆ่า/แทงเพิกถอน</strong>ในตัวสัญญา<br><br>
+        ❌ เจ้าหนี้พูดปากเปล่าว่า "ยกหนี้ให้" สำหรับหนี้กู้ยืมที่มีสัญญา = หนี้<em>ยังไม่ระงับ</em></div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- หน่วย 15 -->
+  <div class="unit-block" style="padding:0 1.5rem" id="u15">
+    <div class="unit-head" style="border-left-color:var(--yellow)"><div><div class="unit-num" style="color:var(--yellow)">หน่วยที่ 15</div><div class="unit-title">หักกลบลบหนี้ แปลงหนี้ใหม่ และหนี้เกลื่อนกลืนกัน</div><div class="unit-sub">ม.341-353 · เจาะลึก 3 วิธีระงับหนี้</div></div></div>
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-yellow" onclick="event.stopPropagation();openModal('m341')">ม.341-348 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">หักกลบลบหนี้ (Set-off)</div><div class="cc-sub">"หนี้ชนหนี้" — เงื่อนไข 3 ข้อ</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 เงื่อนไข ม.341</h4>
+        ① ต่างเป็น<strong>เจ้าหนี้-ลูกหนี้ซึ่งกันและกัน</strong><br>
+        ② <strong>วัตถุแห่งหนี้เป็นอย่างเดียวกัน</strong> (เช่น เงินกับเงิน)<br>
+        ③ <strong>หนี้ทั้งสองถึงกำหนดชำระ</strong>แล้ว<br><br>
+        วิธี: <em>แสดงเจตนาฝ่ายเดียว</em> ไม่ต้องรับความยินยอม → มีผลย้อนหลังถึงเวลาที่หักได้เป็นครั้งแรก</div>
+        <div class="rbox"><h4>⚠️ ข้อยกเว้น (ม.344) ห้ามหักกลบ</h4>
+        • หนี้มีข้อต่อสู้ (เช่น โมฆียะยังบอกล้างได้)<br>
+        • หนี้จาก<strong>มูลละเมิด</strong> → ลูกหนี้ฝ่ายทำละเมิดขอหักไม่ได้<br>
+        (แต่เจ้าหนี้ที่ถูกทำละเมิด ขอหักได้!)</div>
+      </div></div>
+    </div>
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-yellow" onclick="event.stopPropagation();openModal('m349')">ม.349-352 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">แปลงหนี้ใหม่ (Novation)</div><div class="cc-sub">"ล้างของเก่า สร้างของใหม่"</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="abox"><h4>🔍 3 วิธีแปลงหนี้</h4>
+        ① <strong>เปลี่ยนวัตถุ/เงื่อนไข:</strong> เปลี่ยนหนี้เงินกู้เป็นหนี้ซื้อขายม้า<br>
+        ② <strong>เปลี่ยนตัวลูกหนี้ (ม.350):</strong> สัญญาระหว่างเจ้าหนี้กับลูกหนี้ใหม่ แต่ทำโดย<em>ขืนใจลูกหนี้เดิมไม่ได้</em><br>
+        ③ <strong>เปลี่ยนตัวเจ้าหนี้:</strong> ต้องทำตามหลักโอนสิทธิเรียกร้อง</div>
+        <div class="rbox"><h4>ผล ม.352 — จุดสำคัญ</h4>หนี้เดิมระงับ → สิทธิอุปกรณ์ (จำนำ/จำนอง/ค้ำประกัน) <strong>ระงับตามไปด้วย</strong> เว้นแต่จะตกลงโอนไปประกันหนี้ใหม่ พร้อมความยินยอมผู้ค้ำประกัน</div>
+      </div></div>
+    </div>
+    <div class="cc">
+      <div class="cc-head" onclick="toggleCC(this)">
+        <span class="mat-num c-yellow" onclick="event.stopPropagation();openModal('m353')">ม.353 <span class="click-icon">👆</span></span>
+        <div><div class="cc-title">หนี้เกลื่อนกลืนกัน (Merger)</div><div class="cc-sub">"รวมร่างเป็นคนเดียว"</div></div>
+        <div class="cc-chev">▾</div>
+      </div>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="ltext"><span class="ll">📜 มาตรา 353</span>ถ้าสิทธิเรียกร้องและความรับผิดในหนี้รายใดตกอยู่แก่บุคคลคนเดียวกัน ท่านว่าหนี้รายนั้นเป็นอันระงับสิ้นไป</div>
+        <div class="abox"><h4>💡 ตัวอย่าง</h4>นายแดงกู้เงินนายดำ → นายดำตาย → นายแดงเป็นทายาทคนเดียวได้มรดก (สิทธิเป็นเจ้าหนี้มาที่นายแดง) → หนี้ระงับเพราะเกลื่อนกลืนกัน</div>
+      </div></div>
+    </div>
+  </div>
+</div>
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeBg(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <div class="modal-badge" id="mBadge"></div>
+        <div class="modal-title" id="mTitle"></div>
+        <div class="modal-sub" id="mSub"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="mBody"></div>
+  </div>
+</div>
+
+<script>
+// ===== SECTION SWITCHER =====
+function showSection(id) {
+  document.querySelectorAll('.section-block').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => {
+    t.classList.remove('active');
+    t.style.background = '';
+    t.style.color = '';
+  });
+  document.getElementById('sec-' + id).classList.add('active');
+  const tabs = document.querySelectorAll('.tab');
+  const map = {all:0,bukkhon:1,nitikat:2,ni:3};
+  if (map[id] !== undefined) {
+    tabs[map[id]].classList.add('active');
+    tabs[map[id]].style.background = 'var(--gold)';
+    tabs[map[id]].style.color = '#000';
+  }
+  window.scrollTo(0,0);
+}
+
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function toggleCC(head) {
+  const body = head.nextElementSibling;
+  const chev = head.querySelector('.cc-chev');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  if (chev) chev.style.transform = isOpen ? '' : 'rotate(180deg)';
+}
+
+// ===== MODAL DATA =====
+const D = {
+  m15:{bc:'#3b82f6',bb:'rgba(59,130,246,.15)',badge:'ม.15 · สภาพบุคคล',title:'มาตรา 15 — การเริ่มสภาพบุคคล',sub:'ป.พ.พ. บรรพ 1 ลักษณะ 1 หมวด 1',
+    law:'มาตรา ๑๕ สภาพบุคคลย่อมเริ่มแต่เมื่อคลอดแล้วอยู่รอดเป็นทารก และสิ้นสุดลงเมื่อตาย\n\nทารกในครรภ์มารดา ก็สามารถมีสิทธิต่าง ๆ ได้ หากว่าภายหลังคลอดแล้วอยู่รอดเป็นทารก',
+    elems:[{t:'คลอด = พ้นจากครรภ์มารดาหมดทั้งตัว (ไม่สนสายสะดือ)',s:[]},{t:'อยู่รอดเป็นทารก = มีสัญญาณชีพ (หายใจ/หัวใจเต้น)',s:['แม้เพียงชั่วครู่ก็ถือว่าอยู่รอดได้']},{t:'ทารกในครรภ์ → มีสิทธิบางอย่างได้ หากต่อมาคลอดแล้วอยู่รอด',s:[]}],
+    note:'สูตรจำ: "คลอด+อยู่รอด = สภาพบุคคล" | ตัดสายสะดือไม่ใช่เงื่อนไข',
+    pills:[{c:'r-info',l:'สภาพบุคคลเริ่ม'}],rn:'หากทารกคลอดออกมาแล้วแม้มีชีพเพียงชั่วครู่ก็ถือว่ามีสภาพบุคคลแล้ว และสามารถรับมรดกได้'},
+  m61:{bc:'#3b82f6',bb:'rgba(59,130,246,.15)',badge:'ม.61-62 · สาบสูญ',title:'มาตรา 61-62 — การสาบสูญ',sub:'ป.พ.พ. บรรพ 1 ลักษณะ 1',
+    law:'มาตรา ๖๑ ถ้าบุคคลใดได้ไปจากภูมิลำเนาหรือถิ่นที่อยู่ และไม่มีใครรู้แน่ว่าบุคคลนั้นยังมีชีวิตอยู่หรือไม่ตลอดระยะเวลาห้าปี...\n\n(กรณีพิเศษ) สงคราม/ยานพาหนะ/อันตราย: สองปี → ศาลสั่งสาบสูญได้\n\nมาตรา ๖๒ บุคคลซึ่งศาลได้มีคำสั่งให้เป็นคนสาบสูญ ให้ถือว่าถึงแก่ความตายเมื่อครบกำหนดระยะเวลาดังที่ระบุในมาตรา ๖๑',
+    elems:[{t:'ธรรมดา: หายไป 5 ปี → ศาลสั่งสาบสูญได้',s:[]},{t:'พิเศษ (สงคราม/ยานพาหนะล่ม/อันตราย): หายไป 2 ปี',s:[]},{t:'วันตาย = วันครบกำหนดตาม ม.61 ไม่ใช่วันศาลสั่ง',s:[]}],
+    note:'สูตรจำ: "ธรรมดา 5 / พิเศษ 2 / ตายเมื่อครบกำหนด ไม่ใช่วันศาลสั่ง"',
+    pills:[{c:'r-info',l:'สาบสูญ = ถือว่าตาย'}],rn:'คำสั่งสาบสูญมีผลย้อนหลัง: ถือว่าตายตั้งแต่วันครบกำหนดระยะเวลาตาม ม.61 ไม่ใช่วันที่ศาลมีคำสั่ง'},
+  m37:{bc:'#3b82f6',bb:'rgba(59,130,246,.15)',badge:'ม.37-47 · ภูมิลำเนา',title:'มาตรา 37-47 — ภูมิลำเนา',sub:'ป.พ.พ. บรรพ 1',
+    law:'มาตรา ๓๗ ภูมิลำเนาของบุคคลธรรมดา ได้แก่ถิ่นอันบุคคลนั้นมีสถานที่อยู่เป็นแหล่งสำคัญ',
+    elems:[{t:'ทั่วไป: ถิ่นที่อยู่เป็นแหล่งสำคัญ',s:[]},{t:'ผู้เยาว์: ตามผู้แทนโดยชอบธรรม',s:[]},{t:'คนไร้ความสามารถ: ตามผู้อนุบาล',s:[]},{t:'ข้าราชการ: ถิ่นที่ทำการตามตำแหน่ง',s:[]},{t:'ผู้ถูกจำคุก: เรือนจำที่ถูกจำคุก',s:[]}],
+    note:'สูตรจำ: "ภูมิลำเนา = แหล่งสำคัญ / พิเศษ = ตามกฎหมายระบุ"',
+    pills:[{c:'r-info',l:'ภูมิลำเนา'}],rn:'ภูมิลำเนามีความสำคัญในการส่งหมายศาลและการกำหนดเขตอำนาจศาล'},
+  m65:{bc:'#06b6d4',bb:'rgba(6,182,212,.15)',badge:'ม.65 · นิติบุคคล',title:'มาตรา 65 — การกำเนิดนิติบุคคล',sub:'ป.พ.พ. บรรพ 1 ลักษณะ 2',
+    law:'มาตรา ๖๕ นิติบุคคลจะมีขึ้นได้ก็แต่ด้วยอาศัยอำนาจแห่งประมวลกฎหมายแพ่งและพาณิชย์หรือกฎหมายอื่น',
+    elems:[{t:'ต้องมีกฎหมายรับรองเท่านั้น',s:['บริษัทจำกัด, มูลนิธิ, สมาคม, องค์กรปกครองส่วนท้องถิ่น']},{t:'คณะบุคคลรวมตัวเองโดยไม่มีกฎหมายรับรอง = ไม่ใช่นิติบุคคล',s:[]}],
+    note:'สูตรจำ: "นิติบุคคล = ต้องมีกฎหมายรับรอง"',
+    pills:[{c:'r-info',l:'ต้องมีกฎหมายรับรอง'}],rn:'หากคณะบุคคลรวมตัวกันโดยไม่มีกฎหมายรับรอง ไม่สามารถเป็นคู่ความในศาลได้'},
+  m66:{bc:'#06b6d4',bb:'rgba(6,182,212,.15)',badge:'ม.66-70 · สิทธินิติบุคคล',title:'มาตรา 66-70 — สิทธิหน้าที่ ภูมิลำเนา ผู้แทน',sub:'ป.พ.พ. บรรพ 1 ลักษณะ 2',
+    law:'มาตรา ๖๖ นิติบุคคลย่อมมีสิทธิและหน้าที่ตามบทบัญญัติแห่งประมวลกฎหมายนี้หรือกฎหมายอื่น ภายในขอบแห่งอำนาจหน้าที่หรือวัตถุประสงค์...\n\nมาตรา ๖๗ ภายใต้บังคับมาตรา ๖๖ นิติบุคคลย่อมมีสิทธิและหน้าที่เช่นเดียวกับบุคคลธรรมดา เว้นแต่สิทธิและหน้าที่ซึ่งโดยสภาพจะพึงมีพึงเป็นได้เฉพาะแก่บุคคลธรรมดาเท่านั้น',
+    elems:[{t:'ม.66: สิทธิหน้าที่ภายในขอบวัตถุประสงค์เท่านั้น',s:[]},{t:'ม.67: ไม่มีสิทธิที่เฉพาะแก่บุคคลธรรมดา (แต่งงาน/รับบุตรบุญธรรมไม่ได้)',s:[]},{t:'ม.68-69: ภูมิลำเนา = สำนักงานใหญ่ / มีสาขา = ภูมิลำเนาหลายแห่งได้',s:[]},{t:'ม.70: ต้องมีผู้แทนอย่างน้อย 1 คน',s:[]}],
+    note:'สูตรจำ: "นิติบุคคลทำได้แค่ขอบวัตถุประสงค์ / ผู้แทนทำนอกขอบ = ผู้แทนรับผิดส่วนตัว"',
+    pills:[{c:'r-info',l:'ขอบวัตถุประสงค์'}],rn:'ผู้แทนทำละเมิดในหน้าที่ → นิติบุคคลรับผิด / ทำนอกขอบวัตถุประสงค์ → ผู้แทนรับผิดส่วนตัว'},
+  m149:{bc:'#f0c040',bb:'rgba(240,192,64,.15)',badge:'ม.149 · นิติกรรม',title:'มาตรา 149 — ความหมายนิติกรรม',sub:'ป.พ.พ. บรรพ 1 ลักษณะ 4',
+    law:'มาตรา ๑๔๙ นิติกรรม หมายความว่า การใดอันทำลงโดยชอบด้วยกฎหมาย ด้วยใจสมัคร มุ่งโดยตรงต่อการผูกนิติสัมพันธ์ขึ้นระหว่างบุคคล เพื่อจะก่อ เปลี่ยนแปลง โอน สงวน หรือระงับซึ่งสิทธิ',
+    elems:[{t:'① กระทำโดยบุคคล',s:[]},{t:'② ชอบด้วยกฎหมาย',s:[]},{t:'③ ด้วยใจสมัคร (ไม่ถูกบังคับ)',s:[]},{t:'④ มุ่งผูกนิติสัมพันธ์',s:[]},{t:'⑤ เพื่อเคลื่อนไหวแห่งสิทธิ (ก่อ/เปลี่ยน/โอน/สงวน/ระงับ)',s:[]}],
+    note:'สูตรจำ: "บชใมเ" — บุคคล, ชอบกฎหมาย, ใจสมัคร, มุ่งผูก, เคลื่อนไหวสิทธิ',
+    pills:[{c:'r-valid',l:'องค์ประกอบ 5 ข้อ'}],rn:'นิติกรรมแตกต่างจากนิติเหตุ (ละเมิด/จัดการงานนอกสั่ง) ตรงที่นิติกรรมเกิดจากเจตนามุ่งผูกนิติสัมพันธ์'},
+  m150:{bc:'#ef4444',bb:'rgba(239,68,68,.15)',badge:'ม.150 · โมฆะ',title:'มาตรา 150 — นิติกรรมที่มีวัตถุประสงค์เป็นโมฆะ',sub:'ป.พ.พ. บรรพ 1 ลักษณะ 4',
+    law:'มาตรา ๑๕๐ การใดมีวัตถุประสงค์เป็นการต้องห้ามชัดแจ้งโดยกฎหมาย เป็นการพ้นวิสัย หรือเป็นการขัดต่อความสงบเรียบร้อยหรือศีลธรรมอันดีของประชาชน การนั้นเป็นโมฆะ',
+    elems:[{t:'① ต้องห้ามชัดแจ้งโดยกฎหมาย',s:['จ้างฆ่าคน / ค้าประเวณี']},{t:'② เป็นการพ้นวิสัย (เป็นไปไม่ได้)',s:['ขายดาวอังคาร']},{t:'③ ขัดความสงบเรียบร้อย/ศีลธรรมอันดี',s:['สัญญาว่าจะไม่ฟ้องคดีอาญา (ที่ไม่ใช่ส่วนตัว)']}],
+    note:'สูตรจำ: "ต้องห้าม/พ้นวิสัย/ขัดศีลธรรม = โมฆะ"',
+    pills:[{c:'r-void',l:'โมฆะ'}],rn:'โมฆะ = เสียเปล่าแต่ต้น ผู้มีส่วนได้เสียทุกคนยกขึ้นอ้างได้ ไม่มีอายุความ'},
+  m154:{bc:'#ef4444',bb:'rgba(239,68,68,.15)',badge:'ม.154-155 · เจตนาลวง',title:'มาตรา 154-155 — เจตนาซ่อนเร้น/ลวง/อำพราง',sub:'ป.พ.พ. บรรพ 1 ลักษณะ 4',
+    law:'มาตรา ๑๕๔ การแสดงเจตนาลวงโดยสมรู้กับคู่กรณีอีกฝ่ายหนึ่ง ท่านว่าเป็นโมฆะ แต่จะยกขึ้นเป็นข้อต่อสู้บุคคลภายนอกผู้กระทำการโดยสุจริตไม่ได้\n\nมาตรา ๑๕๔ (เจตนาซ่อนเร้น) ถ้าผู้แสดงเจตนาสงวนเจตนาแท้จริงของตนไว้ในใจ... ให้ถือตามที่แสดงออก เว้นแต่คู่กรณีอีกฝ่ายรู้',
+    elems:[{t:'เจตนาซ่อนเร้น (ม.154): ในใจอย่าง แสดงออกอีกอย่าง',s:['ผล: สมบูรณ์ เว้นแต่อีกฝ่ายรู้ → โมฆะ']},{t:'เจตนาลวง (ม.155 ว.1): สมรู้แสดงเจตนาลวง',s:['ผล: โมฆะ แต่ยกต่อสู้บุคคลภายนอกผู้สุจริตไม่ได้']},{t:'นิติกรรมอำพราง (ม.155 ว.2): ทำบังหน้าอีกนิติกรรม',s:['ที่บังหน้า: โมฆะ / ที่ถูกอำพราง: นำกฎหมายนั้นมาใช้']}],
+    note:'สูตรจำ: "ซ่อน = ตามที่แสดง / ลวงสมรู้ = โมฆะ / อำพราง = บังหน้าโมฆะ"',
+    pills:[{c:'r-void',l:'เจตนาลวง = โมฆะ'},{c:'r-valid',l:'เจตนาซ่อนเร้น = สมบูรณ์'}],rn:'ความแตกต่างสำคัญ: เจตนาซ่อนเร้นทำคนเดียว / เจตนาลวงต้องสมรู้ทั้งสองฝ่าย'},
+  m157:{bc:'#f97316',bb:'rgba(249,115,22,.15)',badge:'ม.157-164 · ความวิปริต',title:'มาตรา 156-164 — ความวิปริตแห่งการแสดงเจตนา',sub:'ป.พ.พ. บรรพ 1 ลักษณะ 4',
+    law:'ม.156: สำคัญผิดในสาระสำคัญ → โมฆะ\nม.157: สำคัญผิดในคุณสมบัติ → โมฆียะ\nม.159: กลฉ้อฉล (ถูกหลอกถึงขนาด) → โมฆียะ\nม.164: ข่มขู่ (กลัวถึงขนาด) → โมฆียะ',
+    elems:[{t:'ม.156 สำคัญผิดสาระสำคัญ: ลักษณะนิติกรรม/ตัวบุคคล/ทรัพย์',s:['ผล: โมฆะ']},{t:'ม.157 สำคัญผิดคุณสมบัติ: คุณสมบัติที่เป็นสาระสำคัญ',s:['ผล: โมฆียะ']},{t:'ม.159 กลฉ้อฉล: ถูกหลอก "ถึงขนาด" (ถ้าไม่มีจะไม่ทำ)',s:['ผล: โมฆียะ']},{t:'ม.164 ข่มขู่: กลัว "ถึงขนาด" ภัยใกล้และร้ายแรง',s:['ผล: โมฆียะ']}],
+    note:'สูตรจำ: "สำคัญผิดสาระ = โมฆะ / คุณสมบัติ+ฉ้อฉล+ข่มขู่ = โมฆียะ"',
+    pills:[{c:'r-void',l:'สาระสำคัญ → โมฆะ'},{c:'r-voidable',l:'คุณสมบัติ/ฉ้อฉล/ข่มขู่ → โมฆียะ'}],rn:'จุดสำคัญ: "ถึงขนาด" หมายถึงถ้าไม่มีเหตุนั้นจะไม่ทำนิติกรรมเลย'},
+  m172:{bc:'#ef4444',bb:'rgba(239,68,68,.15)',badge:'ม.172 · โมฆะ',title:'มาตรา 172-173 — ผลของโมฆะกรรม',sub:'ป.พ.พ. บรรพ 1 ลักษณะ 4',
+    law:'มาตรา ๑๗๒ โมฆะกรรมนั้น ไม่อาจให้สัตยาบันแก่กันได้ และผู้มีส่วนได้เสียคนหนึ่งคนใดจะยกความเสียเปล่าแห่งโมฆะกรรมขึ้นกล่าวอ้างก็ได้\n\nมาตรา ๑๗๓ ถ้าจะต้องคืนทรัพย์สินอันเกิดแต่โมฆะกรรม ให้นำบทบัญญัติว่าด้วยลาภมิควรได้แห่งประมวลกฎหมายนี้มาใช้บังคับ',
+    elems:[{t:'เสียเปล่าแต่ต้น ไม่ก่อสิทธิหน้าที่',s:[]},{t:'ไม่สามารถให้สัตยาบันได้ (ต่างจากโมฆียะ)',s:[]},{t:'ผู้มีส่วนได้เสียทุกคนยกขึ้นอ้างได้',s:[]},{t:'หากชำระไปแล้ว คืนตามลาภมิควรได้',s:[]}],
+    note:'สูตรจำ: "โมฆะ = ตายแต่ต้น / ให้สัตยาบันไม่ได้ / ผู้มีส่วนได้เสียทุกคนอ้างได้"',
+    pills:[{c:'r-void',l:'เสียเปล่าแต่ต้น'}],rn:'โมฆะกรรมไม่มีอายุความ ยกขึ้นอ้างได้ตลอดเวลา'},
+  m175:{bc:'#f97316',bb:'rgba(249,115,22,.15)',badge:'ม.175-181 · โมฆียะ',title:'มาตรา 175-181 — โมฆียะกรรม การบอกล้างและสัตยาบัน',sub:'ป.พ.พ. บรรพ 1 ลักษณะ 4',
+    law:'มาตรา ๑๗๕ โมฆียะกรรมนั้น บุคคลต่อไปนี้จะบอกล้างเสียก็ได้...\n\nมาตรา ๑๗๖ การบอกล้างโมฆียะกรรม ให้ถือว่าเป็นโมฆะมาแต่เริ่มแรก...\n\nมาตรา ๑๘๑ โมฆียะกรรมนั้น ถ้ามิได้บอกล้างภายในเวลาหนึ่งปีนับแต่เวลาที่อาจให้สัตยาบันได้ หรือภายในสิบปีนับแต่ได้ทำนิติกรรมนั้น ให้ถือว่าสัตยาบันแล้ว',
+    elems:[{t:'ผู้มีสิทธิบอกล้าง: เฉพาะผู้ที่กฎหมายคุ้มครอง',s:['ผู้เยาว์, ผู้ถูกกลฉ้อฉล, ผู้ถูกข่มขู่']},{t:'ผลบอกล้าง: ถือว่าโมฆะมาแต่เริ่มแรก (ย้อนหลัง)',s:[]},{t:'ผลให้สัตยาบัน: สมบูรณ์ตลอดไป',s:[]},{t:'อายุความบอกล้าง: 1 ปีนับแต่รู้ หรือ 10 ปีนับแต่ทำนิติกรรม',s:[]}],
+    note:'สูตรจำ: "โมฆียะ = ยังมีชีวิต รอบอกล้าง / บอกล้าง = ย้อนหลังโมฆะ / สัตยาบัน = สมบูรณ์ตลอดกาล"',
+    pills:[{c:'r-voidable',l:'โมฆียะ'}],rn:'โมฆียะ ≠ โมฆะ: โมฆียะยังมีผลจนกว่าจะถูกบอกล้าง หากไม่บอกล้างภายในอายุความ = ถือว่าสัตยาบัน'},
+  m177:{bc:'#f97316',bb:'rgba(249,115,22,.15)',badge:'ม.177 · สัตยาบัน',title:'มาตรา 177 — การให้สัตยาบันโมฆียะกรรม',sub:'ป.พ.พ. บรรพ 1 ลักษณะ 4',
+    law:'มาตรา ๑๗๗ การให้สัตยาบันแก่โมฆียะกรรมนั้น ย่อมให้สมบูรณ์ตลอดไปเสมือนว่านิติกรรมนั้นสมบูรณ์มาแต่เริ่มแรก...',
+    elems:[{t:'สัตยาบันโดยชัดแจ้ง: แสดงเจตนาให้สัตยาบัน',s:[]},{t:'สัตยาบันโดยปริยาย: ปฏิบัติตามสัญญาต่อไปโดยรู้ว่าโมฆียะ',s:['เช่น ผู้เยาว์บรรลุนิติภาวะแล้วยังชำระหนี้ต่อ']}],
+    note:'สูตรจำ: "สัตยาบัน = ยืนยัน = สมบูรณ์ตลอดกาล (ย้อนหลังด้วย)"',
+    pills:[{c:'r-valid',l:'สมบูรณ์ตลอดไป'}],rn:'การให้สัตยาบันมีผลย้อนหลัง ถือว่านิติกรรมสมบูรณ์มาตั้งแต่แรก'},
+  m183:{bc:'#eab308',bb:'rgba(234,179,8,.15)',badge:'ม.183 · เงื่อนไข',title:'มาตรา 183 — เงื่อนไขบังคับก่อนและบังคับหลัง',sub:'ป.พ.พ. บรรพ 1 ลักษณะ 4',
+    law:'มาตรา ๑๘๓ วรรคหนึ่ง: ถ้านิติกรรมกระทำขึ้นโดยมีเงื่อนไขบังคับก่อน นิติกรรมนั้นย่อมมีผลเมื่อเงื่อนไขสำเร็จแล้ว\n\nวรรคสอง: ถ้านิติกรรมกระทำขึ้นโดยมีเงื่อนไขบังคับหลัง นิติกรรมนั้นย่อมสิ้นผลเมื่อเงื่อนไขสำเร็จแล้ว',
+    elems:[{t:'เงื่อนไขบังคับก่อน: เหตุไม่แน่นอน เกิดแล้วจึงมีผล',s:['"สอบผ่านจะให้รถ" → รอเงื่อนไขสำเร็จ']},{t:'เงื่อนไขบังคับหลัง: มีผลแล้ว เมื่อเงื่อนไขสำเร็จจึงสิ้นผล',s:['"เช่าจนลูกกลับมา" → สิ้นสุดเมื่อลูกกลับ']}],
+    note:'สูตรจำ: "บังคับก่อน = รอเกิดจึงมีผล / บังคับหลัง = มีผลแล้วรอสิ้น"',
+    pills:[{c:'r-info',l:'เงื่อนไข = ไม่แน่นอน'}],rn:'เงื่อนไขต่างจากเงื่อนเวลา: เงื่อนไข = ไม่แน่นอนว่าจะเกิด / เงื่อนเวลา = แน่นอนว่าต้องเกิด'},
+  m193_14:{bc:'#eab308',bb:'rgba(234,179,8,.15)',badge:'ม.193/14 · อายุความสะดุด',title:'มาตรา 193/14 — อายุความสะดุดหยุดลง',sub:'ป.พ.พ. บรรพ 1 ลักษณะ 4',
+    law:'มาตรา ๑๙๓/๑๔ อายุความย่อมสะดุดหยุดลงในกรณีดังต่อไปนี้\n(1) ลูกหนี้รับสภาพหนี้ต่อเจ้าหนี้ตามสิทธิเรียกร้องโดยชัดแจ้งหรือโดยปริยาย\n(2) เจ้าหนี้ได้ฟ้องคดีเพื่อตั้งหลักฐานสิทธิเรียกร้อง...',
+    elems:[{t:'ลูกหนี้รับสภาพหนี้: ทำหนังสือรับ / ชำระดอกเบี้ย / จ่ายบางส่วน',s:[]},{t:'เจ้าหนี้ฟ้องคดี',s:[]},{t:'ผล: เวลาที่ผ่านไปแล้วเสียเปล่า เริ่มนับใหม่ตั้งแต่ศูนย์',s:[]}],
+    note:'สูตรจำ: "สะดุด = เริ่มนับใหม่จากศูนย์ / รับสภาพ = สะดุด / ฟ้องศาล = สะดุด"',
+    pills:[{c:'r-info',l:'เริ่มนับใหม่'}],rn:'อายุความสะดุดต่างจากอายุความหยุด: สะดุด = เวลาที่ผ่านเสียเปล่า เริ่มใหม่ / หยุด = นาฬิกาหยุดชั่วคราว'},
+  m193_30:{bc:'#eab308',bb:'rgba(234,179,8,.15)',badge:'ม.193/30 · อายุความ 10 ปี',title:'มาตรา 193/30 — อายุความทั่วไป 10 ปี',sub:'ป.พ.พ. บรรพ 1 ลักษณะ 4',
+    law:'มาตรา ๑๙๓/๓๐ อายุความนั้น ถ้าไม่มีกฎหมายบัญญัติไว้เป็นอย่างอื่น ให้มีกำหนดสิบปี',
+    elems:[{t:'อายุความทั่วไป = 10 ปี',s:[]},{t:'อายุความพิเศษตามกฎหมายกำหนด',s:['ค่าเช่า/ค่าจ้าง = 2 ปี','คดีละเมิด = 1 ปีนับแต่รู้ / 10 ปีนับแต่ทำ','เพิกถอนฉ้อฉล = 1 ปี/10 ปี','บอกล้างโมฆียะ = 1 ปี/10 ปี']},{t:'ม.193/29: ศาลยกอายุความขึ้นเองไม่ได้',s:[]}],
+    note:'สูตรจำ: "ทั่วไป 10 ปี / ศาลยกเองไม่ได้ / ขาดอายุความ = หนี้ยังมีแต่บังคับไม่ได้"',
+    pills:[{c:'r-info',l:'10 ปีทั่วไป'}],rn:'ขาดอายุความ ≠ หนี้ระงับ: หนี้ยังคงมีอยู่ แต่ลูกหนี้มีสิทธิปฏิเสธการชำระหนี้ได้โดยอ้างอายุความ'},
+  m354:{bc:'#a855f7',bb:'rgba(168,85,247,.15)',badge:'ม.354-361 · คำเสนอ',title:'มาตรา 354-361 — คำเสนอและคำสนอง',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 1',
+    law:'มาตรา ๓๕๔ คำเสนอจะทำสัญญาอันบอกระยะเวลาให้ทำคำสนองนั้น ท่านว่าไม่อาจจะถอนได้ภายในระยะเวลาที่กำหนดไว้...\n\nมาตรา ๓๖๑ อันสัญญาระหว่างบุคคลซึ่งอยู่ห่างกันโดยระยะทางนั้น ย่อมเกิดเป็นสัญญาขึ้นแต่เวลาเมื่อคำบอกกล่าวสนองไปถึงผู้เสนอ',
+    elems:[{t:'ม.354: คำเสนอมีกำหนดเวลา → ถอนก่อนหมดเวลาไม่ได้',s:[]},{t:'ม.355: ห่างกัน+ไม่กำหนดเวลา → รอจนควรได้รับคำตอบ',s:[]},{t:'ม.356: เฉพาะหน้า/โทรศัพท์ → ต้องสนองทันที',s:[]},{t:'คำสนองต้องตรงกับคำเสนอ ไม่แก้ไข',s:['แก้ไข/เพิ่มเติม = คำเสนอขึ้นใหม่']},{t:'สัญญาเกิดเมื่อคำสนองไปถึงผู้เสนอ (ม.361)',s:[]}],
+    note:'สูตรจำ: "เสนอ+สนองตรงกัน = สัญญาเกิด / สนองล่าช้าหรือแก้ไข = คำเสนอขึ้นใหม่"',
+    pills:[{c:'r-valid',l:'สัญญาเกิดเมื่อสนองถึง'}],rn:'สัญญาระหว่างบุคคลห่างกัน: เกิดเมื่อ "คำสนองไปถึงผู้เสนอ" ไม่ใช่เมื่อ "ผู้สนองส่งคำสนองออกไป"'},
+  m361:{bc:'#a855f7',bb:'rgba(168,85,247,.15)',badge:'ม.361 · สัญญาเกิด',title:'มาตรา 361 — เวลาที่สัญญาเกิด',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 1',
+    law:'มาตรา ๓๖๑ อันสัญญาระหว่างบุคคลซึ่งอยู่ห่างกันโดยระยะทางนั้น ย่อมเกิดเป็นสัญญาขึ้นแต่เวลาเมื่อคำบอกกล่าวสนองไปถึงผู้เสนอ',
+    elems:[{t:'สัญญาเกิด "เมื่อคำสนองไปถึงผู้เสนอ"',s:['ไม่ใช่เมื่อผู้สนองส่งออกไป']}],
+    note:'หลัก "Theory of Receipt" — วันที่สัญญาเกิดคือวันที่คำสนองไปถึงผู้เสนอ',
+    pills:[{c:'r-valid',l:'สัญญาเกิด'}],rn:'ความสำคัญ: ใช้กำหนดว่าสัญญาเกิดขึ้น ณ เวลาใด เพื่อพิจารณาว่าคำเสนอยังมีผลอยู่หรือไม่'},
+  m370:{bc:'#ec4899',bb:'rgba(236,72,153,.15)',badge:'ม.370-372 · บาปเคราะห์',title:'มาตรา 370-372 — การรับบาปเคราะห์',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 1',
+    law:'ม.370: ถ้าสัญญาต่างตอบแทนมีวัตถุเป็นอันจะต้องส่งมอบทรัพย์เฉพาะสิ่ง และทรัพย์สิ้นไปเพราะเหตุอันจะโทษลูกหนี้มิได้ ท่านว่าการสูญหายนั้นตกเป็นพับแก่เจ้าหนี้\n\nม.372: หนี้ที่มิใช่การส่งมอบทรัพย์เฉพาะสิ่ง ถ้าการชำระหนี้กลายเป็นพ้นวิสัยเพราะพฤติการณ์อันลูกหนี้ไม่ต้องรับผิดชอบ ลูกหนี้หมดสิทธิจะเรียกให้ชำระหนี้ตอบแทน',
+    elems:[{t:'ม.370 ทรัพย์เฉพาะสิ่ง ยังไม่ส่ง ของเสียโดยไม่มีความผิด',s:['บาปเคราะห์ตกแก่เจ้าหนี้ (ผู้ซื้อ) — ต้องจ่ายเงินแม้ของเสีย']},{t:'ม.371 มีเงื่อนไขบังคับก่อน ของพังก่อนสำเร็จ',s:['บาปเคราะห์ตกแก่ลูกหนี้ (ผู้ขาย) — หมดสิทธิรับเงิน']},{t:'ม.372 ไม่ใช่ทรัพย์เฉพาะสิ่ง/พ้นวิสัย',s:['ลูกหนี้หมดสิทธิรับชำระตอบแทน']}],
+    note:'สูตรจำ: "เฉพาะสิ่ง+ไม่ส่ง → เจ้าหนี้รับ / มีเงื่อนไขบังคับก่อน → ลูกหนี้รับ"',
+    pills:[{c:'r-info',l:'ม.370: เจ้าหนี้รับเคราะห์'},{c:'r-info',l:'ม.371-372: ลูกหนี้รับเคราะห์'}],rn:'บาปเคราะห์ = ใครต้องรับผลเสียเมื่อทรัพย์เสียหายโดยไม่มีความผิดของใคร'},
+  m377:{bc:'#ec4899',bb:'rgba(236,72,153,.15)',badge:'ม.377-385 · มัดจำ/เบี้ยปรับ',title:'มาตรา 377-385 — มัดจำและเบี้ยปรับ',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 1',
+    law:'มาตรา ๓๗๗ เมื่อเข้าทำสัญญา ถ้าได้ให้สิ่งใดไว้เป็นมัดจำ ท่านให้ถือว่าการที่ให้มัดจำนั้นย่อมเป็นพยานหลักฐานว่าสัญญานั้นได้ทำกันขึ้นแล้ว...\n\nมาตรา ๓๗๙ ถ้าลูกหนี้สัญญาไว้ต่อเจ้าหนี้ว่าจะใช้เงินจำนวนหนึ่งเป็นเบี้ยปรับเมื่อตนไม่ชำระหนี้ก็ดี...',
+    elems:[{t:'มัดจำ: ส่งมอบในวันทำสัญญา / เป็นพยาน / ประกันการปฏิบัติ',s:['ผู้ให้ผิด → อีกฝ่ายริบ / ผู้รับผิด → ต้องคืนมัดจำ']},{t:'เบี้ยปรับ: ข้อตกลงล่วงหน้า',s:['ผิดนัด → เจ้าหนี้ริบได้ทันที / ม.383 ศาลลดได้']},{t:'ม.383: ถ้าเบี้ยปรับสูงเกินส่วน ศาลลดได้',s:[]}],
+    note:'สูตรจำ: "มัดจำ = ส่งมอบวันทำสัญญา / เบี้ยปรับ = ข้อตกลงล่วงหน้า / ศาลลดเบี้ยปรับได้"',
+    pills:[{c:'r-info',l:'มัดจำ'},{c:'r-info',l:'เบี้ยปรับ'}],rn:'ความแตกต่างสำคัญ: มัดจำต้องส่งมอบจริงในวันทำสัญญา / เบี้ยปรับเป็นแค่ข้อตกลงล่วงหน้า ไม่ต้องส่งมอบ'},
+  m386:{bc:'#ec4899',bb:'rgba(236,72,153,.15)',badge:'ม.386-394 · เลิกสัญญา',title:'มาตรา 386-394 — การเลิกสัญญา',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 1',
+    law:'มาตรา ๓๘๗ ถ้าคู่สัญญาฝ่ายหนึ่งไม่ชำระหนี้ อีกฝ่ายหนึ่งจะกำหนดระยะเวลาพอสมควร แล้วบอกกล่าวให้ฝ่ายนั้นชำระหนี้ภายในระยะเวลานั้นก็ได้...\n\nมาตรา ๓๙๑ เมื่อคู่สัญญาฝ่ายหนึ่งได้ใช้สิทธิเลิกสัญญาแล้ว คู่สัญญาแต่ละฝ่ายจำต้องให้อีกฝ่ายหนึ่งได้กลับคืนสู่ฐานะดังที่เป็นอยู่เดิม',
+    elems:[{t:'ม.387: ลูกหนี้ผิดนัด เจ้าหนี้กำหนดเวลาพอสมควรแล้วยังไม่ชำระ → บอกเลิกได้',s:[]},{t:'ม.388: สัญญาที่ต้องชำระตามเวลา ไม่ชำระตรงเวลา = บอกเลิกได้ทันที',s:[]},{t:'ม.391: ผลเลิกสัญญา = กลับคืนสู่ฐานะเดิม + คืนของพร้อมดอกเบี้ย',s:[]}],
+    note:'สูตรจำ: "เลิกสัญญา = กลับคืนสู่ฐานะเดิม / ม.387 กำหนดเวลาก่อน / ม.388 ตรงเวลาสำคัญ = เลิกได้ทันที"',
+    pills:[{c:'r-info',l:'กลับคืนสู่ฐานะเดิม'}],rn:'การเลิกสัญญา ≠ การบอกล้างโมฆียะ: เลิกสัญญา = สัญญาเคยสมบูรณ์แล้วค่อยเลิก / บอกล้าง = ย้อนหลังเสมือนไม่เคยมีสัญญา'},
+  m194:{bc:'#14b8a6',bb:'rgba(20,184,166,.15)',badge:'ม.194 · หลักหนี้',title:'มาตรา 194 — ความหมายของหนี้',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 1 หมวด 1',
+    law:'มาตรา ๑๙๔ ด้วยอำนาจแห่งมูลหนี้ เจ้าหนี้ย่อมมีสิทธิจะเรียกให้ลูกหนี้ชำระหนี้ได้ อนึ่ง การชำระหนี้ด้วยงดเว้นการอันใดอันหนึ่งก็ย่อมมีได้',
+    elems:[{t:'หนี้ = ความผูกพันระหว่างเจ้าหนี้และลูกหนี้',s:[]},{t:'บุคคลสิทธิ: บังคับได้เฉพาะตัวลูกหนี้ (สัมพัทธ์)',s:['≠ ทรัพยสิทธิ: บังคับได้กับทุกคน']},{t:'บ่อเกิดหนี้: นิติกรรม / ละเมิด / จัดการงานนอกสั่ง / ลาภมิควรได้',s:[]}],
+    note:'สูตรจำ: "หนี้ = สิทธิ+หน้าที่ระหว่างบุคคล / บุคคลสิทธิ ≠ ทรัพยสิทธิ"',
+    pills:[{c:'r-info',l:'บุคคลสิทธิ'}],rn:'บุคคลสิทธิบังคับได้เฉพาะกับลูกหนี้ที่ผูกพัน หากลูกหนี้โอนทรัพย์ไปแล้ว เจ้าหนี้จะตามเอาทรัพย์คืนจากบุคคลภายนอกไม่ได้ (เว้นแต่ฉ้อฉล ม.237)'},
+  m195:{bc:'#14b8a6',bb:'rgba(20,184,166,.15)',badge:'ม.195 · วัตถุหนี้',title:'มาตรา 195 — วัตถุแห่งหนี้: ทรัพย์ตามประเภท',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 1',
+    law:'มาตรา ๑๙๕ วรรคหนึ่ง: เมื่อทรัพย์อันจะพึงส่งมอบนั้น ระบุไว้แต่เพียงประเภท... ลูกหนี้จะต้องส่งมอบทรัพย์ชนิดปานกลาง\n\nวรรคสอง: ถ้าลูกหนี้ได้กระทำการอันจำเป็นเพื่อที่จะส่งมอบทรัพย์นั้นทุกประการแล้ว... ทรัพย์นั้นเป็นทรัพย์เฉพาะสิ่ง',
+    elems:[{t:'ว.1: ระบุแค่ประเภท (เช่น ข้าว 100 กก.) → ส่งมอบ "ปานกลาง" ไม่เลวเกิน ไม่ดีเลิศ',s:[]},{t:'ว.2: เมื่อเลือกหรือส่งมอบแล้ว → กลายเป็น "ทรัพย์เฉพาะสิ่ง" ทันที',s:['ผลคือบาปเคราะห์เปลี่ยนไป (ม.370)']}],
+    note:'สูตรจำ: "ทรัพย์ตามประเภท → ปานกลาง / เลือก/ส่งแล้ว → เฉพาะสิ่ง"',
+    pills:[{c:'r-info',l:'ทรัพย์ปานกลาง'}],rn:'เมื่อทรัพย์กลายเป็นเฉพาะสิ่งแล้ว ความเสี่ยงในทรัพย์จะเปลี่ยนไปตาม ม.370'},
+  m204:{bc:'#22c55e',bb:'rgba(34,197,94,.15)',badge:'ม.204 · ผิดนัด',title:'มาตรา 204 — การผิดนัดของลูกหนี้',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 1 หมวด 2',
+    law:'มาตรา ๒๐๔ ถ้าหนี้ถึงกำหนดชำระแล้ว และภายหลังแต่นั้น เจ้าหนี้ได้ให้คำเตือนแก่ลูกหนี้แล้ว ลูกหนี้ยังไม่ชำระหนี้ไซร้ ลูกหนี้ได้ชื่อว่าผิดนัดนับแต่เวลาที่ให้คำเตือนนั้น\n\nถ้าได้กำหนดเวลาชำระหนี้ไว้ตามวันแห่งปฏิทิน และลูกหนี้มิได้ชำระหนี้ตามกำหนดไซร้ ให้ถือว่าลูกหนี้ผิดนัดโดยมิพักต้องเตือนเลย',
+    elems:[{t:'วรรค 1: ไม่มีกำหนดวันที่แน่นอน → ต้องเตือนก่อน',s:['ผิดนัดเมื่อเตือนแล้วยังไม่จ่าย']},{t:'วรรค 2: กำหนดตามวันปฏิทิน → ผิดนัดทันที',s:['เช่น "ชำระวันที่ 5 พฤษภาคม"']},{t:'⚠️ "ชำระภายใน 10 วัน" ≠ ปฏิทิน ต้องเตือนก่อน',s:[]}],
+    note:'สูตรจำ: "ปฏิทิน = ผิดนัดทันที / ไม่ชัด = ต้องเตือนก่อน"',
+    pills:[{c:'r-info',l:'ลูกหนี้ผิดนัด'}],rn:'ม.205: ตราบใดการชำระหนี้ยังไม่กระทำลงเพราะเหตุสุดวิสัย ตราบนั้นลูกหนี้ไม่ผิดนัด'},
+  m207:{bc:'#22c55e',bb:'rgba(34,197,94,.15)',badge:'ม.207 · เจ้าหนี้ผิดนัด',title:'มาตรา 207 — การผิดนัดของเจ้าหนี้',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 1',
+    law:'มาตรา ๒๐๗ ถ้าลูกหนี้ขอปฏิบัติการชำระหนี้ และเจ้าหนี้ไม่รับชำระหนี้นั้นโดยปราศจากมูลเหตุอันจะอ้างกฎหมายได้ไซร้ ท่านว่าเจ้าหนี้ตกเป็นผู้ผิดนัด',
+    elems:[{t:'ลูกหนี้เตรียมชำระโดยชอบ',s:[]},{t:'เจ้าหนี้ไม่รับโดยไม่มีเหตุอันชอบ',s:[]},{t:'ผล: เจ้าหนี้ผิดนัด → ลูกหนี้หลุดพ้นดอกเบี้ยและค่าเสียหาย',s:[]}],
+    note:'สูตรจำ: "ลูกหนี้พร้อมชำระ เจ้าหนี้ไม่รับ = เจ้าหนี้ผิดนัด"',
+    pills:[{c:'r-info',l:'เจ้าหนี้ผิดนัด'}],rn:'เจ้าหนี้ผิดนัดมีผลให้ลูกหนี้หลุดพ้นจากความรับผิดในดอกเบี้ยและค่าเสียหายที่เกิดในระหว่างนั้น'},
+  m218:{bc:'#22c55e',bb:'rgba(34,197,94,.15)',badge:'ม.218-222 · พ้นวิสัย',title:'มาตรา 218-222 — ชำระหนี้กลายเป็นพ้นวิสัย',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 1',
+    law:'มาตรา ๒๑๘ ถ้าการชำระหนี้กลายเป็นพ้นวิสัยเพราะพฤติการณ์อันใดอันหนึ่ง ซึ่งลูกหนี้ต้องรับผิดชอบ... ลูกหนี้จะต้องใช้ค่าสินไหมทดแทน\n\nมาตรา ๒๒๒ การเรียกเอาค่าสินไหมทดแทน เป็นไปเพื่อให้ผู้ต้องเสียหายได้กลับคืนฐานะดังที่เป็นอยู่เดิม',
+    elems:[{t:'ม.218: พ้นวิสัยเพราะความผิดลูกหนี้ → ต้องใช้ค่าสินไหมทดแทน',s:[]},{t:'ม.219: พ้นวิสัยเพราะความผิดเจ้าหนี้/เหตุภายนอก → ลูกหนี้หลุดพ้น',s:[]},{t:'ม.222 ค่าเสียหาย: สามัญ + พิเศษ (เฉพาะที่คาดเห็นได้ล่วงหน้า)',s:[]}],
+    note:'สูตรจำ: "ผิดลูกหนี้ → รับผิด / ผิดเจ้าหนี้/เหตุนอก → หลุดพ้น"',
+    pills:[{c:'r-void',l:'ม.218: ลูกหนี้รับผิด'},{c:'r-valid',l:'ม.219: ลูกหนี้หลุดพ้น'}],rn:'ม.217: ระหว่างผิดนัด ถ้าทรัพย์สูญหายแม้เหตุสุดวิสัย ลูกหนี้ยังต้องรับผิด เว้นแต่จะพิสูจน์ได้ว่าไม่ทำให้เสียหายเพิ่ม'},
+  m233:{bc:'#06b6d4',bb:'rgba(6,182,212,.15)',badge:'ม.233-236 · สวมสิทธิ',title:'มาตรา 233-236 — การใช้สิทธิเรียกร้องของลูกหนี้',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 1',
+    law:'มาตรา ๒๓๓ ถ้าลูกหนี้ขัดขืนไม่ยอมใช้สิทธิเรียกร้องหรือเพิกเฉยเสีย โดยที่พฤติการณ์เช่นนั้นจะเป็นทางให้เจ้าหนี้เสียประโยชน์ เจ้าหนี้จะใช้สิทธิเรียกร้องนั้นในนามของตนเองแทนลูกหนี้ก็ได้',
+    elems:[{t:'ม.233: ลูกหนี้ขัดขืน/เพิกเฉยไม่ทวงหนี้ → เจ้าหนี้สวมสิทธิในนามตนเอง',s:[]},{t:'ม.234: ข้อยกเว้น — สิทธิเฉพาะตัวโดยแท้ สวมไม่ได้',s:['ค่าอุปการะ / สิทธิฟ้องหย่า / สิทธิที่เกิดจากความเสน่หา']},{t:'ม.235: เรียกให้ชำระทั้งหมดแก่ตนได้ แต่ถ้าได้เกิน ต้องคืน',s:[]}],
+    note:'สูตรจำ: "ลูกหนี้เฉย เจ้าหนี้สวม (233) / สิทธิเฉพาะตัว สวมไม่ได้ (234)"',
+    pills:[{c:'r-info',l:'เจ้าหนี้สวมสิทธิ'}],rn:'สำคัญ: การสวมสิทธิไม่จำเป็นต้องฟ้องศาลเสมอไป ต่างจากการเพิกถอนฉ้อฉล (ม.237) ที่ต้องฟ้องศาล'},
+  m237:{bc:'#06b6d4',bb:'rgba(6,182,212,.15)',badge:'ม.237-240 · ฉ้อฉล',title:'มาตรา 237-240 — การเพิกถอนการฉ้อฉล',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 1',
+    law:'มาตรา ๒๓๗ เจ้าหนี้ชอบที่จะร้องขอให้ศาลเพิกถอนเสียได้ซึ่งนิติกรรมใดๆ อันลูกหนี้ได้กระทำลงทั้งรู้อยู่ว่าจะเป็นทางให้เจ้าหนี้เสียเปรียบ...\n\nมาตรา ๒๔๐ สิทธิเรียกร้องของเจ้าหนี้ตามมาตรา ๒๓๗ นั้น มีอายุความหนึ่งปีนับแต่เวลาที่เจ้าหนี้ได้รู้ต้นเหตุอันเป็นมูลให้เพิกถอน หรือสิบปีนับแต่ได้ทำนิติกรรมนั้น',
+    elems:[{t:'เงื่อนไข ม.237: ทรัพย์ลูกหนี้ลดจนไม่พอชำระหนี้',s:[]},{t:'มีค่าตอบแทน: ลูกหนี้รู้ + ผู้รับโอนรู้ ว่าเจ้าหนี้เสียเปรียบ',s:[]},{t:'เสน่หา (ฟรี): ลูกหนี้รู้ฝ่ายเดียวก็เพิกถอนได้',s:[]},{t:'ม.238: ไม่กระทบสิทธิบุคคลภายนอกผู้สุจริตและเสียค่าตอบแทน',s:[]},{t:'ม.240 อายุความ: 1 ปีนับแต่รู้ หรือ 10 ปีนับแต่ทำ',s:[]}],
+    note:'สูตรจำ: "ลูกหนี้โกง เจ้าหนี้เพิกถอน (237) / ต้องฟ้องศาลเท่านั้น / 1 ปีรู้ / 10 ปีนับแต่ทำ"',
+    pills:[{c:'r-info',l:'ต้องฟ้องศาล'}],rn:'ข้อแตกต่างกับ ม.159 (กลฉ้อฉล): ม.237 คือการโกงเจ้าหนี้ (นิติกรรมเป็นโมฆียะ) / ม.159 คือหลอกลวงคู่สัญญา'},
+  m241:{bc:'#3b82f6',bb:'rgba(59,130,246,.15)',badge:'ม.241-250 · สิทธิยึดหน่วง',title:'มาตรา 241-250 — สิทธิยึดหน่วง',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 2',
+    law:'มาตรา ๒๔๑ ผู้ใดเป็นผู้ครองทรัพย์สินของผู้อื่น และมีหนี้อันเป็นคุณประโยชน์แก่ตนเกี่ยวด้วยทรัพย์สินซึ่งครองนั้นไซร้ ท่านว่าผู้นั้นจะยึดหน่วงทรัพย์สินนั้นไว้จนกว่าจะได้รับการชำระหนี้...',
+    elems:[{t:'① ครอบครองทรัพย์ของผู้อื่น',s:[]},{t:'② หนี้เกี่ยวเนื่องกับทรัพย์นั้น',s:['ค่าซ่อมรถ, ค่าตัดเสื้อ']},{t:'③ หนี้ถึงกำหนดชำระแล้ว',s:[]},{t:'④ เข้าครอบครองโดยชอบด้วยกฎหมาย',s:['ขโมยมา = ยึดหน่วงไม่ได้']}],
+    note:'สูตรจำ: "ครหถช = ครอบครอง/หนี้เกี่ยว/ถึงกำหนด/ชอบกฎหมาย" | ยึดไว้ได้ แต่ขายทอดตลาดเองไม่ได้!',
+    pills:[{c:'r-info',l:'ยึดหน่วง ≠ ขายทอดตลาด'}],rn:'สิทธิยึดหน่วงให้สิทธิแค่ "ยึดไว้" เพื่อบังคับให้ลูกหนี้มาชำระหนี้ ไม่ใช่สิทธิในการขายทรัพย์เอาเงิน'},
+  m251:{bc:'#3b82f6',bb:'rgba(59,130,246,.15)',badge:'ม.251+ · บุริมสิทธิ',title:'มาตรา 251 — บุริมสิทธิ',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 2',
+    law:'มาตรา ๒๕๑ บุคคลผู้มีบุริมสิทธิย่อมทรงไว้ซึ่งสิทธิเหนือทรัพย์สินของลูกหนี้ในการที่จะได้รับการชำระหนี้อันค้างชำระแก่ตนจากทรัพย์สินนั้นก่อนเจ้าหนี้อื่น...',
+    elems:[{t:'บุริมสิทธิสามัญ: เหนือทรัพย์สินทั้งหมดของลูกหนี้',s:['ค่าภาษี / ค่าจ้างคนรับใช้ / ค่าฤชาธรรมเนียม']},{t:'บุริมสิทธิพิเศษเหนือสังหาริมทรัพย์',s:['เจ้าของหอพัก/โรงแรม เหนือของในห้อง']},{t:'บุริมสิทธิพิเศษเหนืออสังหาริมทรัพย์',s:['รับเหมาสร้างบ้าน / ซื้อขายที่ดิน']}],
+    note:'สูตรจำ: "บุริมสิทธิ = ได้รับก่อนเจ้าหนี้อื่น / สามัญ = ทรัพย์ทั้งหมด / พิเศษ = ทรัพย์เฉพาะ"',
+    pills:[{c:'r-info',l:'ได้รับก่อนเจ้าหนี้อื่น'}],rn:'บุริมสิทธิต่างจากสิทธิยึดหน่วง: บุริมสิทธิ = ได้รับชำระก่อน / สิทธิยึดหน่วง = ยึดไว้ได้'},
+  m291:{bc:'#6366f1',bb:'rgba(99,102,241,.15)',badge:'ม.291-295 · ลูกหนี้ร่วม',title:'มาตรา 291-295 — ลูกหนี้ร่วม',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 1',
+    law:'มาตรา ๒๙๑ ถ้าบุคคลหลายคนจะต้องทำการชำระหนี้โดยทำนองซึ่งแต่ละคนจำต้องชำระหนี้สิ้นเชิงไซร้ แม้ถึงว่าเจ้าหนี้ชอบที่จะได้รับชำระหนี้สิ้นเชิงได้แต่จากลูกหนี้คนหนึ่งคนเดียวก็ตาม...',
+    elems:[{t:'ม.291: เจ้าหนี้เรียกลูกหนี้คนใดก็ได้ให้ชำระสิ้นเชิง',s:[]},{t:'ม.292: การกระทำที่เป็นคุณแก่เจ้าหนี้ของคนหนึ่ง → เป็นประโยชน์คนอื่นด้วย',s:['เช่น ชำระหนี้ / หักกลบลบหนี้']},{t:'ม.293: ปลดหนี้ให้คนหนึ่ง → เพียงส่วนของเขาเท่านั้น',s:[]},{t:'ม.294: อายุความสะดุดที่คนหนึ่ง → มีผลถึงคนอื่น',s:[]},{t:'ม.296: ชำระเกินส่วน → ไล่เบี้ยคนอื่นได้',s:[]}],
+    note:'สูตรจำ: "ลูกหนี้ร่วม = เรียกคนใดก็ได้ / อายุความสะดุดผลถึงคนอื่น"',
+    pills:[{c:'r-info',l:'เจ้าหนี้เลือกได้'}],rn:'ม.294 เป็นจุดออกข้อสอบบ่อย: อายุความสะดุดที่ลูกหนี้ร่วมคนหนึ่ง มีผลถึงลูกหนี้ร่วมคนอื่นด้วย'},
+  m299:{bc:'#6366f1',bb:'rgba(99,102,241,.15)',badge:'ม.299-302 · เจ้าหนี้ร่วม',title:'มาตรา 299-302 — เจ้าหนี้ร่วม',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 1',
+    law:'มาตรา ๒๙๙ วรรคหนึ่ง: ถ้าบุคคลหลายคนมีสิทธิเรียกร้องการชำระหนี้โดยทำนองซึ่งแต่ละคนอาจจะเรียกให้ชำระหนี้สิ้นเชิงได้ไซร้... ลูกหนี้จะชำระหนี้ให้แก่เจ้าหนี้คนใดคนหนึ่งก็ได้',
+    elems:[{t:'ม.299 ว.1: ลูกหนี้จะชำระให้เจ้าหนี้คนใดก็ได้',s:[]},{t:'เจ้าหนี้คนหนึ่งเรียกชำระทั้งหมดหรือบางส่วนได้',s:[]},{t:'เมื่อชำระแล้ว เจ้าหนี้ร่วมแบ่งกันตามที่ตกลง',s:[]}],
+    note:'สูตรจำ: "เจ้าหนี้ร่วม = ลูกหนี้เลือกจ่ายให้คนไหนก็ได้"',
+    pills:[{c:'r-info',l:'ลูกหนี้เลือกได้'}],rn:'ต่างจากลูกหนี้ร่วม: ลูกหนี้ร่วม = เจ้าหนี้เลือก / เจ้าหนี้ร่วม = ลูกหนี้เลือก'},
+  m226:{bc:'#a855f7',bb:'rgba(168,85,247,.15)',badge:'ม.226-232 · รับช่วงสิทธิ',title:'มาตรา 226-232 — การรับช่วงสิทธิ',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 1',
+    law:'มาตรา ๒๒๖ ผู้รับช่วงสิทธิชอบที่จะใช้สิทธิทั้งหลายบรรดาที่เจ้าหนี้มีอยู่โดยมูลหนี้รวมทั้งประกันแห่งหนี้นั้นในนามของตนเองได้\n\nมาตรา ๒๒๙ (3 กรณีรับช่วงสิทธิโดยกฎหมาย)',
+    elems:[{t:'รับช่วงสิทธิ = เปลี่ยนตัวเจ้าหนี้โดยผลของกฎหมาย',s:[]},{t:'ม.229 — 3 กรณีที่กฎหมายให้รับช่วงสิทธิ:',s:['เจ้าหนี้รองจ่ายให้เจ้าหนี้ก่อน','ผู้ซื้อทรัพย์ติดจำนองจ่ายให้เจ้าหนี้จำนอง','ลูกหนี้ร่วม/ผู้ค้ำประกันจ่ายแทนลูกหนี้']},{t:'ผล: รับช่วงสิทธิ "เท่าที่จ่ายไป"',s:[]}],
+    note:'สูตรจำ: "รับช่วงสิทธิ = กฎหมายส่งสิทธิให้ ไม่ต้องบอกกล่าว / เกิดขึ้นเองเมื่อจ่ายเงิน"',
+    pills:[{c:'r-info',l:'เกิดโดยกฎหมาย'}],rn:'ข้อแตกต่างกับโอนสิทธิเรียกร้อง: รับช่วงสิทธิเกิดเองตามกฎหมาย / โอนสิทธิเกิดจากสัญญาและต้องบอกกล่าว'},
+  m306:{bc:'#a855f7',bb:'rgba(168,85,247,.15)',badge:'ม.306 · โอนสิทธิ',title:'มาตรา 306 — เงื่อนไขการโอนสิทธิเรียกร้อง',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 1',
+    law:'มาตรา ๓๐๖ การโอนหนี้อันจะพึงต้องชำระตามเขาสั่งหรือตามสัญญาต่างตอบแทนนั้น ถ้าไม่มีหลักฐานแห่งการโอนเป็นหนังสือ... จะยกขึ้นเป็นข้อต่อสู้ลูกหนี้หรือบุคคลภายนอกไม่ได้',
+    elems:[{t:'ต้องบอกกล่าวเป็นหนังสือไปยังลูกหนี้ หรือ',s:[]},{t:'ลูกหนี้ยินยอมเป็นหนังสือ',s:[]},{t:'ม.308: ลูกหนี้มีข้อต่อสู้ต่อผู้โอนก่อนได้รับบอกกล่าว → ยกต่อสู้ผู้รับโอนได้',s:[]}],
+    note:'สูตรจำ: "โอนสิทธิ = เจ้าหนี้ขายสิทธิ / ต้องบอกกล่าวเป็นหนังสือ (306) / ก่อนบอกกล่าว ลูกหนี้มีข้อต่อสู้ใด → ยกต่อผู้รับโอนได้"',
+    pills:[{c:'r-info',l:'ต้องบอกกล่าวหนังสือ'}],rn:'หากลูกหนี้ไม่รู้ว่ามีการโอนสิทธิ และไปชำระให้เจ้าหนี้เดิม → หนี้ระงับ / ผู้รับโอนเรียกคืนจากเจ้าหนี้เดิมแทน'},
+  m340:{bc:'#f97316',bb:'rgba(249,115,22,.15)',badge:'ม.340 · ปลดหนี้',title:'มาตรา 340 — การปลดหนี้',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 1',
+    law:'มาตรา ๓๔๐ ถ้าเจ้าหนี้แสดงเจตนาต่อลูกหนี้ว่าจะปลดหนี้ให้ ท่านว่าหนี้นั้นก็เป็นอันระงับสิ้นไป\n\nถ้าหนี้มีหลักฐานเป็นหนังสือ การปลดหนี้จะสมบูรณ์ก็ต่อเมื่อเจ้าหนี้ทำหลักฐานเป็นหนังสือด้วย หรือเวนคืนเอกสารอันเป็นหลักฐานแห่งหนี้แก่ลูกหนี้ หรือขีดฆ่าเอกสารนั้น',
+    elems:[{t:'นิติกรรมฝ่ายเดียวของเจ้าหนี้',s:[]},{t:'หนี้ธรรมดา: แสดงเจตนาปากเปล่าได้',s:[]},{t:'หนี้มีหลักฐานหนังสือ ต้องทำอย่างใดอย่างหนึ่ง:',s:['ทำหนังสือปลดหนี้','เวนคืนเอกสารสัญญา','ขีดฆ่า/แทงเพิกถอนในตัวสัญญา']}],
+    note:'สูตรจำ: "หนี้มีหนังสือ → ปากเปล่าปลดไม่ได้ / ต้องหนังสือ/คืนเอกสาร/ขีดฆ่า"',
+    pills:[{c:'r-info',l:'3 วิธีปลดหนี้ที่มีหนังสือ'}],rn:'ข้อสอบมักหลอก: เจ้าหนี้พูดปากเปล่าว่า "ยกหนี้ให้" สำหรับหนี้กู้ยืมที่มีสัญญา = หนี้ยังไม่ระงับ'},
+  m341:{bc:'#f97316',bb:'rgba(249,115,22,.15)',badge:'ม.341-348 · หักกลบลบหนี้',title:'มาตรา 341-348 — การหักกลบลบหนี้',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 1',
+    law:'มาตรา ๓๔๑ ถ้าบุคคลสองคนต่างมีความผูกพันซึ่งกันและกัน โดยมูลหนี้อันมีวัตถุเป็นอย่างเดียวกัน และหนี้ทั้งสองรายถึงกำหนดจะชำระแล้วไซร้ ท่านว่าลูกหนี้ฝ่ายใดฝ่ายหนึ่งย่อมจะหักกลบลบหนี้นั้นกับหนี้ของตนเสียได้\n\nมาตรา ๓๔๔ ลูกหนี้ไม่อาจขอหักกลบลบหนี้ด้วยสิทธิเรียกร้องอันบุคคลภายนอกจะพึงมีต่อเจ้าหนี้ หรือด้วยสิทธิเรียกร้องซึ่งเกิดแต่การอันมิชอบด้วยกฎหมาย',
+    elems:[{t:'เงื่อนไข 3 ข้อ:',s:['ต่างเป็นเจ้าหนี้-ลูกหนี้ซึ่งกันและกัน','วัตถุแห่งหนี้เป็นอย่างเดียวกัน','หนี้ทั้งสองถึงกำหนดแล้ว']},{t:'วิธี: แสดงเจตนาฝ่ายเดียว ไม่ต้องยินยอม',s:['มีผลย้อนหลังถึงเวลาที่หักได้เป็นครั้งแรก']},{t:'ม.344 ห้ามหักกลบ:',s:['หนี้มูลละเมิด (ลูกหนี้ฝ่ายทำละเมิดขอหักไม่ได้)','หนี้ที่ยังมีข้อต่อสู้']}],
+    note:'สูตรจำ: "หนี้ชนหนี้ = หักกลบ / ม.341 3 เงื่อนไข / ม.344 ห้ามหักจากมูลละเมิด"',
+    pills:[{c:'r-info',l:'3 เงื่อนไข'},{c:'r-void',l:'ห้าม: มูลละเมิด'}],rn:'ข้อสอบหลอก: ก. ทำร้าย ข. และ ก. มีหนี้ติด ข. อยู่ → ก. ขอหักกลบไม่ได้ (ม.344) แต่ ข. ขอหักกลบ (หักจากฝ่ายที่ถูกทำละเมิด) ได้'},
+  m349:{bc:'#f97316',bb:'rgba(249,115,22,.15)',badge:'ม.349-352 · แปลงหนี้',title:'มาตรา 349-352 — การแปลงหนี้ใหม่',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 1',
+    law:'มาตรา ๓๔๙ อันว่าแปลงหนี้ใหม่ด้วยเปลี่ยนสิ่งซึ่งเป็นสาระสำคัญแห่งหนี้นั้น ก็ดี ด้วยเปลี่ยนตัวลูกหนี้ก็ดี ด้วยเปลี่ยนตัวเจ้าหนี้ก็ดี นั้น ท่านว่าหนี้เดิมย่อมระงับสิ้นไปด้วยก่อหนี้ใหม่ขึ้นแทนที่\n\nมาตรา ๓๕๒ ถ้าไม่มีข้อตกลงกันไว้เป็นอย่างอื่น สิทธิจำนำ จำนองหรือค้ำประกันซึ่งมีอยู่เพื่อหนี้เดิม ย่อมระงับไปด้วยการแปลงหนี้ใหม่',
+    elems:[{t:'เปลี่ยนสาระสำคัญ 3 แบบ:',s:['① เปลี่ยนวัตถุ/เงื่อนไข: หนี้กู้เงิน → หนี้ซื้อขายม้า','② เปลี่ยนตัวลูกหนี้ (ม.350): ทำสัญญากับลูกหนี้ใหม่ได้ แต่ขืนใจลูกหนี้เดิมไม่ได้','③ เปลี่ยนตัวเจ้าหนี้: ทำตามหลักโอนสิทธิ']},{t:'ผล ม.352: หนี้เดิมระงับ สิทธิอุปกรณ์ระงับตาม',s:['เว้นแต่จะตกลงให้โอนไปพร้อมความยินยอมผู้ค้ำ']}],
+    note:'สูตรจำ: "แปลงหนี้ = ล้างเก่าสร้างใหม่ / ม.352 อุปกรณ์ระงับตาม (สำคัญมาก)"',
+    pills:[{c:'r-info',l:'หนี้เดิมระงับ'}],rn:'จุดสำคัญ: สิทธิจำนำ/จำนอง/ค้ำประกัน ระงับตามหนี้เดิม ถ้าต้องการให้ประกันต่อหนี้ใหม่ต้องตกลงชัดแจ้งและผู้ค้ำประกันยินยอม'},
+  m353:{bc:'#f97316',bb:'rgba(249,115,22,.15)',badge:'ม.353 · เกลื่อนกลืน',title:'มาตรา 353 — หนี้เกลื่อนกลืนกัน',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 1',
+    law:'มาตรา ๓๕๓ ถ้าสิทธิเรียกร้องและความรับผิดในหนี้รายใดตกอยู่แก่บุคคลคนเดียวกัน ท่านว่าหนี้รายนั้นเป็นอันระงับสิ้นไป',
+    elems:[{t:'สิทธิเจ้าหนี้ + หน้าที่ลูกหนี้ รวมอยู่ที่คนเดียวกัน',s:[]},{t:'ตัวอย่าง: ลูกหนี้กู้เงินพ่อ พ่อตาย ลูกเป็นทายาทคนเดียว',s:['ลูกรับสิทธิเป็นเจ้าหนี้จากมรดก → รวมกับหน้าที่ลูกหนี้ → หนี้ระงับ']}],
+    note:'สูตรจำ: "รวมร่างเป็นคนเดียว = หนี้ระงับ"',
+    pills:[{c:'r-info',l:'หนี้ระงับ'}],rn:'หนี้เกลื่อนกลืนกันเกิดได้หลายกรณี: รับมรดก, ซื้อสิทธิเรียกร้องจากเจ้าหนี้ตัวเอง'},
+  m314:{bc:'#f97316',bb:'rgba(249,115,22,.15)',badge:'ม.314-320 · ชำระหนี้',title:'มาตรา 314-320 — การชำระหนี้',sub:'ป.พ.พ. บรรพ 2 ลักษณะ 1',
+    law:'มาตรา ๓๑๔ อันการชำระหนี้นั้น บุคคลภายนอกจะเป็นผู้ชำระก็ได้ เว้นแต่สภาพแห่งหนี้จะไม่เปิดช่องให้ทำเช่นนั้น...\n\nมาตรา ๓๒๐ ถ้าไม่ได้ตกลงกันไว้ การชำระหนี้จะต้องทำ ณ ภูมิลำเนาปัจจุบันของเจ้าหนี้',
+    elems:[{t:'บุคคลภายนอกชำระแทนได้ เว้นแต่สภาพหนี้ไม่เปิดช่อง',s:[]},{t:'ต้องชำระให้เจ้าหนี้หรือผู้มีอำนาจรับ',s:['ชำระผิดคนหนี้ไม่ระงับ เว้นแต่เจ้าหนี้ให้สัตยาบัน']},{t:'สถานที่ชำระ (ม.320): ภูมิลำเนาเจ้าหนี้ เว้นแต่ทรัพย์เฉพาะสิ่ง (ณ ที่ที่ทรัพย์อยู่ขณะเกิดหนี้)',s:[]}],
+    note:'สูตรจำ: "ชำระหนี้ = ใครก็ชำระได้ / แต่ต้องชำระให้คนมีอำนาจรับ / สถานที่ = ภูมิลำเนาเจ้าหนี้"',
+    pills:[{c:'r-valid',l:'หนี้ระงับ'}],rn:'ถ้าชำระให้คนที่ไม่มีอำนาจรับ หนี้ยังไม่ระงับ เว้นแต่เจ้าหนี้ให้สัตยาบันในภายหลัง'},
+};
+
+function openModal(k) {
+  const d = D[k]; if (!d) return;
+  const b = document.getElementById('mBadge');
+  b.textContent = d.badge;
+  b.style.cssText = `color:${d.bc};background:${d.bb};border:1px solid ${d.bc};padding:.25rem .75rem;border-radius:6px;font-size:.78rem;font-weight:700;display:inline-block;margin-bottom:.4rem`;
+  document.getElementById('mTitle').textContent = d.title;
+  document.getElementById('mSub').textContent = d.sub;
+
+  let h = `<div class="modal-sec law-box" style="border:1px solid rgba(240,192,64,.15)"><div class="modal-sec-title">📋 ตัวบทกฎหมาย</div><div class="law-text">${d.law}</div></div>`;
+  
+  let el = '<ol style="padding:.75rem .75rem .75rem 1.5rem;font-size:.83rem;line-height:1.7">';
+  d.elems.forEach(e => {
+    el += `<li>${e.t}`;
+    if (e.s && e.s.length) { el += '<ul style="margin-top:.3rem;padding-left:1rem;color:var(--dim2)">'; e.s.forEach(s => el += `<li>${s}</li>`); el += '</ul>'; }
+    el += '</li>';
+  });
+  el += '</ol>';
+  if (d.note) el += `<div style="padding:.5rem .75rem;background:rgba(234,179,8,.08);border-top:1px solid rgba(234,179,8,.15);font-size:.78rem;color:var(--yellow)">💡 ${d.note}</div>`;
+  h += `<div class="modal-sec elem-box" style="border:1px solid rgba(59,130,246,.15)"><div class="modal-sec-title">🔍 องค์ประกอบสำคัญ</div>${el}</div>`;
+
+  let pills = d.pills.map(p => `<span class="r-pill ${p.c}" style="padding:.2rem .6rem;border-radius:5px;font-size:.75rem;font-weight:700;margin:.1rem;display:inline-block">${p.l}</span>`).join('');
+  h += `<div class="modal-sec result-box" style="border:1px solid rgba(249,115,22,.15)"><div class="modal-sec-title">⚖️ ผลทางกฎหมาย</div><div style="padding:.5rem .75rem">${pills}</div><div style="padding:.5rem .75rem;font-size:.82rem;line-height:1.6;border-top:1px solid rgba(249,115,22,.1)">${d.rn}</div></div>`;
+
+  document.getElementById('mBody').innerHTML = h;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeBg(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
